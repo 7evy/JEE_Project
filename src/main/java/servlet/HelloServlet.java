@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
         name = "MyServlet",
-        urlPatterns = {"/seblepuissant"}
+        urlPatterns = {""}
     )
 public class HelloServlet extends HttpServlet {
 
@@ -25,7 +25,7 @@ public class HelloServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("ok");
         ServletOutputStream out = resp.getOutputStream();
-        out.write("SEB LE BOSS PUTAIN".getBytes());
+        out.write("Voici le premier test".getBytes());
         out.flush();
         out.close();
     }
