@@ -110,12 +110,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       session = pageContext.getSession();
       out = pageContext.getOut();
       _jspx_out = out;
-
-      out.write("<html>\r\n");
-      out.write("    <body>\r\n");
-      out.write("        <h2>Voici le premier test</h2>\r\n");
-      out.write("    </body>\r\n");
-      out.write("</html>\r\n");
     } catch (java.lang.Throwable t) {
       if (!(t instanceof javax.servlet.jsp.SkipPageException)){
         out = _jspx_out;
