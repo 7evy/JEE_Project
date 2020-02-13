@@ -1,6 +1,7 @@
 package tools;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * 
@@ -239,42 +240,121 @@ public class SQL {
         }
     }
 
+    // /**
+    //  * Suspends a user
+    //  * 
+    //  * @author Adam RIVIERE
+    //  * @param pseudo pseudo of the user
+    //  */
+    // public static void suspend(String pseudo) {
+    //     try {
+    //         Class.forName("com.mysql.cj.jdbc.Driver");
+    //         con = DriverManager.getConnection(url, user, passwd);
+    //         String request = "UPDATE FROM User SET status = 2 WHERE pseudo = ?;";
+    //         PreparedStatement statement = con.prepareStatement(request);
+    //         statement.setString(1, pseudo);
+    //         statement.executeQuery();
+    //     } catch (Exception e) {
+    //         e.getMessage();
+    //     }
+    // }
+
+    // /**
+    //  * Unsuspends a user
+    //  * 
+    //  * @author Adam RIVIERE
+    //  * @param pseudo pseudo of the user
+    //  */
+    // public static void unsuspend(String pseudo) {
+    //     try {
+    //         Class.forName("com.mysql.cj.jdbc.Driver");
+    //         con = DriverManager.getConnection(url, user, passwd);
+    //         String request = "UPDATE FROM User SET status = 1 WHERE pseudo = ?;";
+    //         PreparedStatement statement = con.prepareStatement(request);
+    //         statement.setString(1, pseudo);
+    //         statement.executeQuery();
+    //     } catch (Exception e) {
+    //         e.getMessage();
+    //     }
+    // }
+
     /**
-     * Suspends a user
+     * Returns the list of the games of the player
      * 
      * @author Adam RIVIERE
-     * @param pseudo pseudo of the user
+     * @param pseudo pseudo of the player
+     * @return the list of the games
      */
-    public static void suspend(String pseudo) {
+    public static ArrayList<String> gameList(String pseudo){
+        int userId = getUserId(pseudo);
+        ArrayList<String> array = new ArrayList<String>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, passwd);
-            String request = "UPDATE FROM User SET status = 2 WHERE pseudo = ?;";
+            String request = "SELECT name FROM Game JOIN UsualGames ON Game.idGame = UsualGames.idGame WHERE idUser = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            statement.setString(1, pseudo);
-            statement.executeQuery();
+            statement.setInt(1, userId);
+            res = statement.executeQuery();
+            while(res.next()){
+                array.add(res.getString("name"));
+            }
         } catch (Exception e) {
             e.getMessage();
         }
+        return array;
     }
 
     /**
-     * Unsuspends a user
+     * Returns the number of sessions of the player
      * 
      * @author Adam RIVIERE
-     * @param pseudo pseudo of the user
+     * @param pseudo pseudo of the player
+     * @return the number of sessions
      */
-    public static void unsuspend(String pseudo) {
+    public static int nbSessions(String pseudo){
+        int userId = getUserId(pseudo);
+        int nb = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, passwd);
-            String request = "UPDATE FROM User SET status = 1 WHERE pseudo = ?;";
+            String request = "SELECT COUNT * AS number FROM Session WHERE idUser = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            statement.setString(1, pseudo);
-            statement.executeQuery();
+            statement.setInt(1, userId);
+            res = statement.executeQuery();
+            nb = res.getInt("number");
         } catch (Exception e) {
             e.getMessage();
         }
+        return nb;
+    }
+
+    /**
+     * Returns a list of users whith their pseudo, registration date, status and number of sessions
+     * 
+     * @author Adam RIVIERE
+     * @return the list of all players
+     */
+    public static ArrayList<ArrayList<?>> playerList(){
+        ArrayList<ArrayList<?>> array = new ArrayList<ArrayList<?>>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, user, passwd);
+            String request = "SELECT pseudo,registration,status FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery(); 
+            while(res.next()){
+                ArrayList<Object> user = new ArrayList<Object>();
+                user.add(res.getString("pseudo"));
+                user.add(res.getString("registration"));
+                user.add(res.getInt("status"));
+                int nbSessions = nbSessions(user.get(0).toString());
+                user.add(nbSessions);
+                array.add(user);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return array;
     }
 
 }
