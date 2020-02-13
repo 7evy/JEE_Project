@@ -52,17 +52,23 @@ import java.sql.*;
             String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate) VALUES(?,?,?,?,?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1,pseudo);
-            statement.setString(1,password);
-            statement.setString(1,email);
-            statement.setInt(1,status);
-            statement.setString(1,registration);
-            statement.setString(1,birthDate);
+            statement.setString(2,password);
+            statement.setString(3,email);
+            statement.setInt(4,status);
+            statement.setString(5,registration);
+            statement.setString(6,birthDate);
             statement.executeUpdate();
 		} catch (Exception e) {
 			new Message().dialog("Problème de connexion à la base de donnée vérifier le réseau "+e.getMessage());
 		}
     }
 
+    /**
+     * Gets the id of a user
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the user
+     * @return the id of the user
+     */
     public static int getUserId(String pseudo){
         try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -76,6 +82,77 @@ import java.sql.*;
 		} catch (Exception e) {
 			new Message().dialog("Problème de connexion à la base de donnée vérifier le réseau "+e.getMessage());
 		}
+    }
+
+    /**
+     * Gets the id of a game
+     * @author Adam RIVIERE
+     * @param pseudo name of the game
+     * @return the id of the game
+     */
+    public static int getGameId(String name){
+        try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, user, passwd);
+            String request = "SELECT idGame FROM Game WHERE name = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1,name);
+            res = statement.executeQuery();
+            int id = res.getInt("idGame");
+            return id;
+		} catch (Exception e) {
+			new Message().dialog("Problème de connexion à la base de donnée vérifier le réseau "+e.getMessage());
+		}
+    }
+
+    /**
+     * Adds a new link between a game and a user in the database
+     * @author Adam RIVIERE
+     * @param user pseudo of the user
+     * @param game name of the game
+     */
+    public static void newUsualGames(String user, String game) {
+		try {
+            int userId = getUserId(user);
+            int gameId = getGameId(game);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, user, passwd);
+            String request = "INSERT INTO UsualGames(idUser,idGame) VALUES(?,?);";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1,userId);
+            statement.setInt(2,gameId);
+            statement.executeUpdate();
+		} catch (Exception e) {
+			new Message().dialog("Problème de connexion à la base de donnée vérifier le réseau "+e.getMessage());
+		}		
+    }
+
+    /**
+     * Adds a new game session in the database
+     * @author Adam RIVIERE
+     * @param user pseudo of the user
+     * @param game name of the game
+     * @param status status of the session
+     * @param startDate begin date of the session
+     * @param endDate end date of the session
+     */
+    public static void newSession(String user, String game, int status, String startDate, String endDate) {
+		try {
+            int userId = getUserId(user);
+            int gameId = getGameId(game);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, user, passwd);
+            String request = "INSERT INTO Session(idUser,idGame,status,startDate,endDate) VALUES(?,?,?,?,?);";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1,userId);
+            statement.setInt(2,gameId);
+            statement.setInt(3,status);
+            statement.setString(4,startDate);
+            statement.setString(5,endDate);
+            statement.executeUpdate();
+		} catch (Exception e) {
+			new Message().dialog("Problème de connexion à la base de donnée vérifier le réseau "+e.getMessage());
+		}		
     }
 
  }
