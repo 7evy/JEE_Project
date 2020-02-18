@@ -14,3 +14,7 @@ input[type="submit"] {
   border: 0;
   color: white;
 }
+
+th, td {
+  padding: 4px;
+}
