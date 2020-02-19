@@ -12,6 +12,10 @@ input[type="search"] {
   flex: 3;
 }
 
+input[type="date"] {
+  width: 100%;
+}
+
 #boxdiv {
   padding: 0 30 30 30;
   border: 10px solid steelblue;
