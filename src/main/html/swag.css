@@ -1,11 +1,11 @@
 body{
   background-color: lightsteelblue;
+  font-family: helvetica;
 }
 
 input {
   font-size: 1.6rem;
   height: auto;
-  font-family: helvetica;
 }
 
 input[type="search"] {
@@ -22,11 +22,6 @@ input[type="search"] {
 
 th, td {
   padding: 4px;
-  font-family: helvetica;
-}
-
-h1,h2,h3,div{
-  font-family: helvetica;
 }
 
 h1{
@@ -56,7 +51,6 @@ button{
   cursor: pointer;
   background-color: darkblue;
   color : white;
-  font-family: helvetica;
 }
 
 button:hover{
