@@ -12,6 +12,10 @@ input[type="search"] {
   flex: 3;
 }
 
+input[type="date"] {
+  width: 100%;
+}
+
 #boxdiv {
   padding: 0 30 30 30;
   border: 10px solid steelblue;
@@ -24,12 +28,7 @@ table {
   border-collapse: collapse;
 }
 
-#divtable {
-  border: none;
-}
-
 th, td {
-  text-align: center;
   padding: 3 6 3 6;
   border: 2px solid black;
 }

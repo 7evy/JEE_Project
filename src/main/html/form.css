@@ -1,0 +1,70 @@
+body{
+  background-color: lightsteelblue;
+  font-family: helvetica;
+}
+
+input {
+  font-size: 1.6rem;
+  height: auto;
+}
+
+input[type="search"] {
+  flex: 3;
+}
+
+input[type="date"] {
+  width: 100%;
+}
+
+#boxdiv {
+  padding: 0 30 30 30;
+  border: 10px solid steelblue;
+  border-radius: 20px;
+  background-color: lightsteelblue;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+#divtable {
+  border: none;
+}
+
+th, td {
+  text-align: center;
+  padding: 3 6 3 6;
+  border: 2px solid black;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+#login {
+  height: 4%;
+  width: 13%;
+}
+
+button{
+  height: 4%;
+  width: 6%;
+  border-radius: 12px;
+  border: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: darkblue;
+  color : white;
+}
+
+button:hover{
+  background-color: white;
+  color : black;
+  font-size: 1.5rem;
+}
+
+label{
+  font-size: 1.6rem;
+}
