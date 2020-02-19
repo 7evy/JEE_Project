@@ -1,3 +1,7 @@
+body{
+  background-color: lightsteelblue;
+}
+
 input {
   font-size: 1.6rem;
   height: auto;
@@ -38,14 +42,14 @@ button{
   text-align: center;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: lightgray;
-  color : black;
+  background-color: darkblue;
+  color : white;
   font-family: helvetica;
 }
 
 button:hover{
-  background-color: black;
-  color : white;
+  background-color: white;
+  color : black;
   font-size: 1.5rem;
 }
 
