@@ -25,12 +25,11 @@ input[type="date"] {
 }
 
 table {
-  border-collapse: collapse;
+  border: none;
 }
 
 th, td {
   padding: 3 6 3 6;
-  border: 2px solid black;
 }
 
 h1{
