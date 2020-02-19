@@ -8,6 +8,15 @@ input[type="search"] {
   flex: 3;
 }
 
+#boxdiv {
+  padding: 0 30 30 30;
+  border: 10px solid lightsteelblue;
+  border-radius: 20px;
+  background-color: lightsteelblue;
+  width: 80%;
+  margin: 0 auto;
+}
+
 th, td {
   padding: 4px;
   font-family: helvetica;
