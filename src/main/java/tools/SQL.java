@@ -346,9 +346,9 @@ public class SQL {
                 ArrayList<Object> user = new ArrayList<Object>();
                 user.add(res.getString("pseudo"));
                 user.add(res.getString("registration"));
-                user.add(res.getInt("status"));
                 int nbSessions = nbSessions(user.get(0).toString());
                 user.add(nbSessions);
+                user.add(res.getInt("status"));
                 array.add(user);
             }
         } catch (Exception e) {
