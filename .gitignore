@@ -81,3 +81,5 @@ nb-configuration.xml
 ##############################
 InputFiles.lts
 inputFiles.lst
+embeddedTomcatSample.jar
+embeddedTomcatSample-1.0-SNAPSHOT.jar
