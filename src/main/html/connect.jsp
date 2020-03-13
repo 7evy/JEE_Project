@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -11,11 +13,13 @@
     <h1 align="center">Welcome</h1>
     <br><br><br>
     <div align="center" class="login">
-        <label>Nickname :</label>
-        <input type="text" placeholder="nickname" id="nickname"> <br><br>
-        <label>Password :</label>
-        <input type="password" placeholder="password" id="password"><br><br>
-        <button id="login">Log in</button><br><br>
+        <form action="login" method="post">
+            <label>Nickname :</label>
+            <input type="text" placeholder="nickname" id="nickname"> <br><br>
+            <label>Password :</label>
+            <input type="password" placeholder="password" id="password"><br><br>
+            <input type="submit" id="login" value="Submit"><br><br>
+        </form>
         <a href="register.html">Create a new account</a>
     </div></div>
 </body>

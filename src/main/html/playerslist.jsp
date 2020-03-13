@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -6,20 +8,20 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="boxdiv" style="width: 35%; text-align: center;">
+    <div id="boxdiv">
     <br><br><br>
-    <h1 align="center">Game list</h1>
+    <h1 align="center">Player list</h1>
     <br>
-    <button id="addelete">Add</button>
-    <button id="addelete">Delete</button>
-    <br><br>
     <div align="center">
         <table border="1px solid black">
             <tr border="1px solid black">
-                <th>Game</th>
+                <th>Nickname</th>
+                <th>Registration date</th>
+                <th>Sessions played</th>
             </tr>
             $entries
         </table><br><br>
+        <button id="ban">Ban</button>
     </div></div>
 </body>
 </html>
