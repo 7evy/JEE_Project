@@ -80,6 +80,6 @@ nb-configuration.xml
 ## Other Files
 ##############################
 InputFiles.lts
-target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+./target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 */embeddedTomcatSample.jar
 */embeddedTomcatSample-1.0-SNAPSHOT.jar
