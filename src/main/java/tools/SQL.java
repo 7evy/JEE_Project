@@ -15,9 +15,9 @@ public class SQL {
 
     static Connection con = null;
     static ResultSet res = null;
-    static String url = "jdbc:postgresql://127.0.0.1:5432/BD";//////// changer url,user,psw
-    static String user = "nom-d'utilisateur";
-    static String passwd = "mot_de_passe";
+    static String url = "jdbc:mysql://vps.tonychouteau.fr:3306";
+    static String user = "PDB2020_JEE";
+    static String passwd = "pl2*AdJP0&sE0Jhd!E2a,bRt";
 
     /**
      * Adds a new game in the database
@@ -28,13 +28,14 @@ public class SQL {
     public static void newGame(String name) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "INSERT INTO Game(name) VALUES(?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, name);
             statement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
+            e.printStackTrace();
         }
     }
 
@@ -52,7 +53,7 @@ public class SQL {
     public static void newUser(String pseudo, String password, String email, String registration, String birthDate) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate) VALUES(?,?,?,1,?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -77,7 +78,7 @@ public class SQL {
         int id = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "SELECT idUser FROM User WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -100,7 +101,7 @@ public class SQL {
         int id = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "SELECT idGame FROM Game WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, name);
@@ -124,7 +125,7 @@ public class SQL {
             int userId = getUserId(user);
             int gameId = getGameId(game);
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "INSERT INTO UsualGames(idUser,idGame) VALUES(?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, userId);
@@ -150,7 +151,7 @@ public class SQL {
             int userId = getUserId(user);
             int gameId = getGameId(game);
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "INSERT INTO Session(idUser,idGame,status,startDate,endDate) VALUES(?,?,?,?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, userId);
@@ -173,7 +174,7 @@ public class SQL {
     public static void promoteAdmin(String pseudo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE FROM User SET status = 0 WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -192,7 +193,7 @@ public class SQL {
     public static void demoteAdmin(String pseudo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE FROM User SET status = 1 WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -211,7 +212,7 @@ public class SQL {
     public static void ban(String pseudo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE FROM User SET status = 3 WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -230,7 +231,7 @@ public class SQL {
     public static void deban(String pseudo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE FROM User SET status = 1 WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
@@ -249,7 +250,7 @@ public class SQL {
     // public static void suspend(String pseudo) {
     //     try {
     //         Class.forName("com.mysql.cj.jdbc.Driver");
-    //         con = DriverManager.getConnection(url, user, passwd);
+    //         con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
     //         String request = "UPDATE FROM User SET status = 2 WHERE pseudo = ?;";
     //         PreparedStatement statement = con.prepareStatement(request);
     //         statement.setString(1, pseudo);
@@ -268,7 +269,7 @@ public class SQL {
     // public static void unsuspend(String pseudo) {
     //     try {
     //         Class.forName("com.mysql.cj.jdbc.Driver");
-    //         con = DriverManager.getConnection(url, user, passwd);
+    //         con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
     //         String request = "UPDATE FROM User SET status = 1 WHERE pseudo = ?;";
     //         PreparedStatement statement = con.prepareStatement(request);
     //         statement.setString(1, pseudo);
@@ -290,7 +291,7 @@ public class SQL {
         ArrayList<String> array = new ArrayList<String>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "SELECT name FROM Game JOIN UsualGames ON Game.idGame = UsualGames.idGame WHERE idUser = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, userId);
@@ -316,7 +317,7 @@ public class SQL {
         int nb = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "SELECT COUNT * AS number FROM Session WHERE idUser = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, userId);
@@ -338,7 +339,7 @@ public class SQL {
         ArrayList<ArrayList<?>> array = new ArrayList<ArrayList<?>>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, passwd);
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "SELECT pseudo,registration,status FROM User;";
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery(); 
