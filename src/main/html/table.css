@@ -38,8 +38,18 @@ h1{
 }
 
 #login {
-  height: 4%;
-  width: 13%;
+  height: 5%;
+  width: 15%;
+}
+
+#ban {
+  height: 5%;
+  width: 5%;
+}
+
+#addelete {
+  height: 5%;
+  width: 17%;
 }
 
 button{
@@ -57,7 +67,6 @@ button{
 button:hover{
   background-color: white;
   color : black;
-  font-size: 1.5rem;
 }
 
 label{
