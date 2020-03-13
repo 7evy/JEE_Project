@@ -1,14 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="form.css" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Details</title>
 </head>
 <body>
-    <div id="boxdiv" style="width: 40%">
+    <div id="boxdiv" style="width:40%">
     <h1 align="center">
-        Register
+        Nom du jeu
     </h1><br>
     <div align="center">
         <form>
@@ -41,8 +43,8 @@
                     <td><input type="text" placeholder="games" id="favorite"></td>
                 </tr>
             </table><br>
+            <input type="submit" id="submit" value="Submit">
         </form>
-        <button id="submit">Submit</button>
     </div></div>
 </body>
 </html>

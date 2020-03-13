@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -11,7 +13,7 @@
     <h1 align="center">Welcome</h1>
     <br><br><br>
     <div align="center" class="login">
-        <form>
+        <form action="login" method="post">
             <label>Nickname :</label>
             <input type="text" placeholder="nickname" id="nickname"> <br><br>
             <label>Password :</label>
