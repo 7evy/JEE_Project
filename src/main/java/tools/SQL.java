@@ -94,7 +94,7 @@ public class SQL {
      * Gets the id of a game
      * 
      * @author Adam RIVIERE
-     * @param pseudo name of the game
+     * @param name name of the game
      * @return the id of the game
      */
     public static int getGameId(String name) {
