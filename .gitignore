@@ -81,3 +81,4 @@ nb-configuration.xml
 ##############################
 InputFiles.lts
 inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
