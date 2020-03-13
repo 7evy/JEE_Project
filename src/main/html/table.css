@@ -38,8 +38,13 @@ h1{
 }
 
 #login {
-  height: 4%;
-  width: 13%;
+  height: 5%;
+  width: 15%;
+}
+
+#ban {
+  height: 5%;
+  width: 5%;
 }
 
 button{
