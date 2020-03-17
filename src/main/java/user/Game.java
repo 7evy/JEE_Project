@@ -1,5 +1,7 @@
 package user;
 
+import tools.SQL;
+
 public class Game{
 
     private String name;
@@ -37,6 +39,10 @@ public class Game{
      */
     public void setPseudo(String name) {
         this.name = name;
+    }
+
+    public void pushGame(String name){
+        SQL.newGame(name);
     }
 
 }
