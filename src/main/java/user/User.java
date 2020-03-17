@@ -200,4 +200,21 @@ public class User{
     public void setNbSessions(int nbSessions) {
         this.nbSessions = nbSessions;
     }
+
+    /**
+     * adds a new user to the database
+     * @param pseudo the pseudo
+     * @param pwd the password
+     * @param eMail the eMail
+     * @param status the UserStatus
+     * @param registration the registration date
+     * @param birth the BirthDate
+     * @param games the AL of Games
+     * @author Adam RIVIERE
+     */
+    public void pushUser(String pseudo, String pwd, String eMail, UserStatus status, SDate registration, SDate birth, ArrayList<Game> games){
+        // User user = new User(pseudo, pwd, eMail, status, registration, birth, games, 0);
+        String hpwd = Hasher.hashing(pwd);
+        SQL.newUser(pseudo, hpwd, eMail, registration.toString(), birth.toString());
+    }
 }

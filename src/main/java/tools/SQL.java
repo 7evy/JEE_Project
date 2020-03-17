@@ -40,7 +40,7 @@ public class SQL {
     }
 
     /**
-     * Adds a new game in the database
+     * Adds a new user in the database
      * 
      * @author Adam RIVIERE
      * @param pseudo       pseudo of the user
