@@ -13,7 +13,7 @@
         Nom du jeu
     </h1><br>
     <div align="center">
-        <form>
+        <form action="player" method="get">
             <table>
                 <tr>
                     <td align="right"><label>Nickname :</label></td>
