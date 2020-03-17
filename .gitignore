@@ -85,3 +85,5 @@ target/embeddedTomcatSample.jar
 target/repo/*
 */embeddedTomcatSample.jar
 */embeddedTomcatSample-1.0-SNAPSHOT.jar
+
+tomcat.8080/work/Tomcat/localhost/ROOT/org/apache/

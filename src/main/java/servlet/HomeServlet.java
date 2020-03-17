@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
         name = "MyServlet",
-        urlPatterns = {""}
+        urlPatterns = {"/home"}
     )
 public class HomeServlet extends HttpServlet {
 
@@ -24,27 +24,18 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // ServletOutputStream out = response.getOutputStream();
-        // out.write("Voici le second test".getBytes());
-        // out.flush();
-        // out.close();
-        // System.out.println(request);
-        // System.out.println(response);
-        // // System.out.println(req);
 
 
-
-
-        // RequestDispatcher req = getServletContext().getRequestDispatcher("/../../html/index.jsp");
-        // try{
-        
-        // req.forward(request, response);
-        // }
-        // catch (ServletException e){
-        //     e.printStackTrace();
-        // }
-        // catch (IOException e){
-        //     e.printStackTrace();
-        // }
+                String pageName = "/index.jsp";
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+                try {
+                    rd.forward(request, response);
+                } catch (ServletException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
     }
 }
