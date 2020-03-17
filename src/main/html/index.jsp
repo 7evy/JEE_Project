@@ -20,7 +20,7 @@
             <input type="password" placeholder="password" id="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
-        <a href="register.html">Create a new account</a>
+        <a href="register.jsp">Create a new account</a>
     </div></div>
 </body>
 </html>
