@@ -13,7 +13,7 @@
         Register
     </h1><br>
     <div align="center">
-        <form>
+        <form action="register" method="post">
             <table>
                 <tr>
                     <td align="right"><label>Nickname :</label></td>
