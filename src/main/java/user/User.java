@@ -27,7 +27,6 @@ public class User{
         this.pseudo = null;
         this.pwd = null;
         this.eMail = null;
-        this.status = new UserStatus();
         this.registration = new SDate();
         this.birth = new SDate();
         this.games = new ArrayList<Game>();
