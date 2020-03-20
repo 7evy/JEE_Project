@@ -1,3 +1,3 @@
 package user;
 
-public class Player{}
+public class Player implements UserStatus{}
