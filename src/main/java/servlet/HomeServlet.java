@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pageName = "/index.jsp";
+        String pageName = "/index.html";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
