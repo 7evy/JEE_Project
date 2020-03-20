@@ -13,11 +13,11 @@
     <h1 align="center">Welcome</h1>
     <br><br><br>
     <div align="center" class="login">
-        <form action="login" method="post">
+        <form action="/home" method="post">
             <label>Nickname :</label>
-            <input type="text" placeholder="nickname" id="nickname"> <br><br>
+            <input type="text" placeholder="nickname" id="nickname" name="nickname"> <br><br>
             <label>Password :</label>
-            <input type="password" placeholder="password" id="password"><br><br>
+            <input type="password" placeholder="password" id="password" name="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
         <a href="register.jsp">Create a new account</a>

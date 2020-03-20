@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(
-        name = "MyServlet",
-        urlPatterns = {"/home"}
-    )
+@WebServlet(name = "MyServlet", urlPatterns = { "/home" })
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -24,25 +21,22 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
-                String pageName = "/index.jsp";
-                RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
-                try {
-                    rd.forward(request, response);
-                } catch (ServletException e) {
-                    System.out.println("Error : ServletException");
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    System.out.println("Error : IOException");
-                    e.printStackTrace();
-                }
+        String pageName = "/index.jsp";
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            System.out.println("Error : ServletException");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error : IOException");
+            e.printStackTrace();
+        }
     }
-
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
-        System.out.println(nickname+" "+ pwd);
-}
+        System.out.println(nickname + " " + pwd);
+    }
 }
