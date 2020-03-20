@@ -39,4 +39,10 @@ public class HomeServlet extends HttpServlet {
                 }
     }
 
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String nickname = request.getParameter("nickname");
+        String pwd = request.getParameter("password");
+        System.out.println(nickname+" "+ pwd);
+}
 }
