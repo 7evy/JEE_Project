@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Describes the servlet used on the home page
+ * @author Sébastien HERT
+ */
+
 @WebServlet(name = "home", urlPatterns = { "/home" })
 public class HomeServlet extends HttpServlet {
 
@@ -18,6 +23,13 @@ public class HomeServlet extends HttpServlet {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Displays the page
+     * Users must enter their login and their password
+     * @param request
+     * @param response
+     * @author Sébastien HERT
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,11 +46,19 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+
+    /**
+     * Gets the login and the password
+     * Checks if the user is registered
+     * @param request
+     * @param response
+     * @author Sébastien HERT
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
         System.out.println(nickname + " " + pwd);
-        //TODO
-        response.sendRedirect("http://localhost:8080/gamechoice");
+        // TODO
+        response.sendRedirect("/gamechoice");
     }
 }

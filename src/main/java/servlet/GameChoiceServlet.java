@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Describes the servlet used on the gamechoice page
+ * @author Sébastien HERT
+ */
 @WebServlet(name = "gamechoice", urlPatterns = { "/gamechoice" })
 public class GameChoiceServlet extends HttpServlet {
 
@@ -18,6 +22,12 @@ public class GameChoiceServlet extends HttpServlet {
      */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Displays the page
+     * @param request
+     * @param response
+     * @author Sébastien HERT
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,10 +43,4 @@ public class GameChoiceServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-
-    // public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    //     String nickname = request.getParameter("nickname");
-    //     String pwd = request.getParameter("password");
-    //     System.out.println(nickname + " " + pwd);
-    // }
 }
