@@ -29,7 +29,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "INSERT INTO Game(name) VALUES(?);";
+            String request = "INSERT INTO Game(name,nbPlayers) VALUES(?,0);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, name);
             statement.executeUpdate();
@@ -153,7 +153,7 @@ public class SQL {
      * @param startDate begin date of the session
      * @param endDate   end date of the session
      */
-    public static void newSession(String pseudo, String game, int status, String startDate, String endDate) {
+    public static void createSession(String pseudo, String game, int status, String startDate, String endDate) {
         try {
             int userId = getUserId(pseudo);
             int gameId = getGameId(game);
@@ -377,4 +377,142 @@ public class SQL {
         return array;
     }
 
+    /**
+     * Adds a user to a game
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     */
+    public static void addUserToGame(String game) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            int nb = nbPlayers(game) + 1;
+            statement.setInt(1, nb);
+            statement.setString(2, game);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Removes a user to a game
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     */
+    public static void removeUserToGame(String game) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            int nb = nbPlayers(game) - 1;
+            statement.setInt(1, nb);
+            statement.setString(2, game);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the number of players for a game
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @return the number of players
+     */
+    public static int nbPlayers(String game){
+        int gameId = getGameId(game);
+        int nb = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT COUNT(*) FROM Game WHERE idGame = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, gameId);
+            res = statement.executeQuery();
+            while(res.next()) {
+                nb = res.getInt(1);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return nb;
+    }
+
+    /**
+     * Modifies the current game for a player
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @param pseudo pseudo of the player
+     */
+    public static void currentGame(String game, String pseudo) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "UPDATE User SET currentGame = ? WHERE pseudo = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1, game);
+            statement.setString(2, pseudo);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Adds a session of a game for a player and modifies the differents tables in consequence
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the user
+     * @param game game played
+     * @param status status of the player
+     * @param startDate begin date
+     * @param endDate end date
+     */
+    public static void newSession(String pseudo, String game, int status, String startDate, String endDate){
+        currentGame(game, pseudo);
+        addUserToGame(game);
+        createSession(pseudo, game, status, startDate, endDate);
+    }
+
+    /**
+     * Deletes a session of a player
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @param pseudo pseudo of the player
+     */
+    public static void removeSession(String game, String pseudo) {
+        try {
+            int idGame = getGameId(game);
+            int idUser = getUserId(pseudo);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "DELETE FROM Session WHERE idUser = ? AND idGame = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, idGame);
+            statement.setInt(2, idUser);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteSession(String game, String pseudo){
+        removeUserToGame(game);
+        removeSession(game, pseudo);
+        currentGame("None", pseudo);
+    }
 }
