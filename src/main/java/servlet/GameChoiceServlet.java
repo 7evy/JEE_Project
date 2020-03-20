@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "home", urlPatterns = { "/home" })
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "gamechoice", urlPatterns = { "/gamechoice" })
+public class GameChoiceServlet extends HttpServlet {
 
     /**
      *
@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pageName = "/index.html";
+        String pageName = "/gamechoice.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
@@ -34,11 +34,9 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String nickname = request.getParameter("nickname");
-        String pwd = request.getParameter("password");
-        System.out.println(nickname + " " + pwd);
-        //TODO
-        response.sendRedirect("http://localhost:8080/gamechoice");
-    }
+    // public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    //     String nickname = request.getParameter("nickname");
+    //     String pwd = request.getParameter("password");
+    //     System.out.println(nickname + " " + pwd);
+    // }
 }
