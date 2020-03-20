@@ -31,11 +31,12 @@ public class HomeServlet extends HttpServlet {
                 try {
                     rd.forward(request, response);
                 } catch (ServletException e) {
-                    // TODO Auto-generated catch block
+                    System.out.println("Error : ServletException");
                     e.printStackTrace();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
+                    System.out.println("Error : IOException");
                     e.printStackTrace();
                 }
     }
+
 }
