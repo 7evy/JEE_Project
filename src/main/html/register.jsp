@@ -43,8 +43,8 @@
                     <td><input type="text" placeholder="games" id="favorite"></td>
                 </tr>
             </table><br>
+            <input type="submit" id="submit" value="Submit">
         </form>
-        <button id="submit">Submit</button>
     </div></div>
 </body>
 </html>
