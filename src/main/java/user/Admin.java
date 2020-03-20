@@ -1,3 +1,3 @@
 package user;
 
-public class Admin{}
+public class Admin implements UserStatus{}
