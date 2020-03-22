@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tools.SDate;
+//import tools.SDate;
 
 /**
  * Describes the servlet used on the register page
+ * 
  * @author Sébastien HERT
  */
 @WebServlet(name = "register", urlPatterns = { "/register" })
@@ -26,6 +27,7 @@ public class RegisterServlet extends HttpServlet {
 
     /**
      * Displays the page
+     * 
      * @param request
      * @param response
      * @author Sébastien HERT
@@ -46,6 +48,14 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Gets informations send by the register page and then checks them before
+     * connecting the new user
+     * 
+     * @param request
+     * @param response
+     * @author Sébastien HERT
+     */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd1 = request.getParameter("password1");
@@ -53,8 +63,12 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String birthday = request.getParameter("birthday");
         String favoriteGames = request.getParameter("favorite");
-        System.out.println(nickname+" "+pwd1+" "+pwd2+" "+email+" "+birthday+" "+favoriteGames);
+        System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday + " " + favoriteGames);
+        // System.out.println(SDate.htmlToSdate(birthday));
 
-        System.out.println(SDate.htmlToSdate(birthday));
+        // TODO
+        // check informations + database + connect or pop up
+
+        response.sendRedirect("/gamechoice");
     }
 }

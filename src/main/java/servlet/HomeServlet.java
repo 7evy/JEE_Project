@@ -49,7 +49,7 @@ public class HomeServlet extends HttpServlet {
 
     /**
      * Gets the login and the password
-     * Checks if the user is registered
+     * Checks if the user is registered and then connect him
      * @param request
      * @param response
      * @author Sébastien HERT
@@ -59,6 +59,9 @@ public class HomeServlet extends HttpServlet {
         String pwd = request.getParameter("password");
         System.out.println(nickname + " " + pwd);
         // TODO
+        //check informations + connect or pop up
+
+
         response.sendRedirect("/gamechoice");
     }
 }
