@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tools.SDate;
+
 /**
  * Describes the servlet used on the register page
  * @author Sébastien HERT
@@ -42,5 +44,17 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("Error : IOException");
             e.printStackTrace();
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String nickname = request.getParameter("nickname");
+        String pwd1 = request.getParameter("password1");
+        String pwd2 = request.getParameter("password2");
+        String email = request.getParameter("email");
+        String birthday = request.getParameter("birthday");
+        String favoriteGames = request.getParameter("favorite");
+        System.out.println(nickname+" "+pwd1+" "+pwd2+" "+email+" "+birthday+" "+favoriteGames);
+
+        System.out.println(SDate.htmlToSdate(birthday));
     }
 }
