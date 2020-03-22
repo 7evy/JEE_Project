@@ -457,11 +457,12 @@ public class SQL {
      */
     public static void currentGame(String game, String pseudo) {
         try {
+            int idGame = getGameId(game);
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE User SET currentGame = ? WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            statement.setString(1, game);
+            statement.setInt(1, idGame);
             statement.setString(2, pseudo);
             statement.executeUpdate();
         } catch (Exception e) {
