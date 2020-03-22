@@ -648,7 +648,7 @@ public class SDate{
         }catch(NumberFormatException e){
             System.out.println("Error : Arguments arent valid numbers");
         }catch(ArrayIndexOutOfBoundsException e){
-            System.out.println("Error : the Date given doesnt have the right format, please use the dd/mm/yyyy format");
+            System.out.println("Error : the Date given doesnt have the right format, please use the dd-mm-yyyy format");
         }
 
         return sDate;
