@@ -40,7 +40,7 @@ public class SQL {
     }
 
     /**
-     * Adds a new user in the database
+     * Adds a new user in the database.
      * 
      * @author Adam RIVIERE
      * @param pseudo       pseudo of the user
@@ -52,15 +52,17 @@ public class SQL {
      */
     public static void newUser(String pseudo, String password, String email, String registration, String birthDate) {
         try {
+            int gameNull = getGameId("None");
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate) VALUES(?,?,?,1,?,?);";
+            String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate,currentGame) VALUES(?,?,?,1,?,?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
             statement.setString(2, password);
             statement.setString(3, email);
             statement.setString(4, registration);
             statement.setString(5, birthDate);
+            statement.setInt(6,gameNull);
             statement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -389,7 +391,7 @@ public class SQL {
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            int nb = nbPlayers(game) + 1;
+            int nb = nbPlayers(game);
             statement.setInt(1, nb);
             statement.setString(2, game);
             statement.executeUpdate();
@@ -411,7 +413,7 @@ public class SQL {
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            int nb = nbPlayers(game) - 1;
+            int nb = nbPlayers(game);
             statement.setInt(1, nb);
             statement.setString(2, game);
             statement.executeUpdate();

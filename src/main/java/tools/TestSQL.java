@@ -26,6 +26,7 @@ public class TestSQL{
         SQL.newUsualGames("ProGamer", "Skyrim");
         SQL.newUsualGames("ProGamer", "LOTRO");
         SQL.newSession("ProGamer", "Skyrim", 1, "2020/03/22 - 16:32:00", "2020/03/22 - 20:05:00");
+        // SQL.deleteSession("Skyrim", "ProGamer");
         System.out.println("ok");
     }
 
