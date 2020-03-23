@@ -9,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+
+import tools.Hasher;
+import tools.SQL;
 
 /**
  * Describes the servlet used on the home page
@@ -22,6 +26,8 @@ public class HomeServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
+    private static String nickname = null;
+    private static String pwd = null;
 
     /**
      * Displays the page
@@ -33,7 +39,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pageName = "/index.html";
+        String pageName = "/index.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
@@ -55,13 +61,17 @@ public class HomeServlet extends HttpServlet {
      * @author Sébastien HERT
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String nickname = request.getParameter("nickname");
-        String pwd = request.getParameter("password");
-        System.out.println(nickname + " " + pwd);
-        // TODO
-        //check informations + connect or pop up
+        nickname = request.getParameter("nickname");
+        pwd = request.getParameter("password");
+    }
 
-
-        response.sendRedirect("/gamechoice");
+    public boolean connectionCheck(){
+        boolean res = false;
+        if(nickname != null && pwd != null && nickname != "" && pwd != ""){
+            res = false;
+        }else if(Hasher.hashing(pwd) == SQL.getPsw(nickname)){
+            res = true;
+        }
+        return res; 
     }
 }
