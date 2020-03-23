@@ -25,7 +25,6 @@ public class HomeServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
-    public int cred = 0;
 
     /**
      * Displays the page
@@ -64,8 +63,7 @@ public class HomeServlet extends HttpServlet {
         if(connectionCheck(nickname,pwd) == true){
             response.sendRedirect("/gamechoice");
         }else{
-            cred = 1;
-            response.sendRedirect("/gamechoice");
+            response.sendRedirect("/index.jsp?cred=1");
         }
     }
 
@@ -77,9 +75,5 @@ public class HomeServlet extends HttpServlet {
             res = true;
         }
         return res; 
-    }
-
-    public int getCred(){
-        return cred;
     }
 }

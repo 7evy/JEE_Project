@@ -1,4 +1,3 @@
-<%@ page import ="java.servlet.HomeServlet" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -19,12 +18,7 @@
             <input type="password" placeholder="password" id="password" name="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
-        <%@
-        public int getCredentialStatus(){
-            return getCred();
-        }
-        %>
-        <% if(getCredrentialStatus() == 1){out.println("<p>Wrong credentials</p>");} %>
+        <% if(request.getParameter("cred") == "1"){out.println("<p>Wrong credentials</p>");} %>
         <a href="/register">Create a new account</a>
     </div></div>
 </body>
