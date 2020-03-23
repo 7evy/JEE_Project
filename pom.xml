@@ -36,6 +36,13 @@
         <artifactId>tomcat-jsp-api</artifactId>
         <version>${tomcat.version}</version>
     </dependency>
+    <dependency>
+        <groupId>jdbc</groupId>
+        <artifactId>jdbc</artifactId>
+        <scope>system</scope>
+        <version>1.0</version>
+        <systemPath>${pom.basedir}/lib/jdbc.jar</systemPath>
+    </dependency>
   </dependencies>
   <build>
     <finalName>embeddedTomcatSample</finalName>

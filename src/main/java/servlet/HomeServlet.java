@@ -18,7 +18,7 @@ import tools.SQL;
  * @author Sébastien HERT
  */
 
-@WebServlet(name = "home", urlPatterns = { "" })
+@WebServlet(name = "home", urlPatterns = { "/home" })
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -65,6 +65,7 @@ public class HomeServlet extends HttpServlet {
             response.sendRedirect("/gamechoice");
         }else{
             cred = 1;
+            response.sendRedirect("/gamechoice");
         }
     }
 
