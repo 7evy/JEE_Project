@@ -77,4 +77,8 @@ public class HomeServlet extends HttpServlet {
         }
         return res; 
     }
+
+    public int getCred(){
+        return cred;
+    }
 }
