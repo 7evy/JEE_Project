@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tools.Hasher;
+import tools.SQL;
+
 /**
  * Describes the servlet used on the home page
  * @author Sébastien HERT
@@ -22,6 +25,7 @@ public class HomeServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
+    public int cred = 0;
 
     /**
      * Displays the page
@@ -33,7 +37,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pageName = "/index.html";
+        String pageName = "/index.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
@@ -57,11 +61,20 @@ public class HomeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
-        System.out.println(nickname + " " + pwd);
-        // TODO
-        //check informations + connect or pop up
+        if(connectionCheck(nickname,pwd) == true){
+            response.sendRedirect("/gamechoice");
+        }else{
+            cred = 1;
+        }
+    }
 
-
-        response.sendRedirect("/gamechoice");
+    public boolean connectionCheck(String nickname, String pwd){
+        boolean res = false;
+        if(nickname != null && pwd != null && nickname != "" && pwd != ""){
+            res = false;
+        }else if(Hasher.hashing(pwd) == SQL.getPsw(nickname)){
+            res = true;
+        }
+        return res; 
     }
 }
