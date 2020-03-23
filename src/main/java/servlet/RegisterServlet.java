@@ -64,11 +64,41 @@ public class RegisterServlet extends HttpServlet {
         String birthday = request.getParameter("birthday");
         String favoriteGames = request.getParameter("favorite");
         System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday + " " + favoriteGames);
+
+        System.out.println(this.checkBirthday(birthday));
+
         // System.out.println(SDate.htmlToSdate(birthday));
 
         // TODO
         // check informations + database + connect or pop up
 
         response.sendRedirect("/gamechoice");
+    }
+
+    public boolean checkNickname(String pseudo) {
+        // TODO
+        return false;
+    }
+
+    public boolean checkPassword(String pwd1, String pwd2) {
+        // TODO
+        return false;
+    }
+
+    public boolean checkEMail(String email) {
+        // TODO
+        return false;
+    }
+
+    public boolean checkBirthday(String birthday) {
+        try {
+            if (Integer.parseInt(birthday.split("-")[0]) > 2006) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }
+        return false;
     }
 }

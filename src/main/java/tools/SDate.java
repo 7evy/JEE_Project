@@ -644,7 +644,7 @@ public class SDate{
         String[] parsingDate = htmlDate.split("-");
         SDate sDate = null;
         try{
-            sDate = new SDate(Integer.parseInt(parsingDate[2]),Integer.parseInt(parsingDate[1]),Integer.parseInt(parsingDate[0]));
+            sDate = new SDate(Integer.parseInt(parsingDate[0]),Integer.parseInt(parsingDate[1]),Integer.parseInt(parsingDate[2]));
         }catch(NumberFormatException e){
             System.out.println("Error : Arguments arent valid numbers");
         }catch(ArrayIndexOutOfBoundsException e){
