@@ -525,4 +525,63 @@ public class SQL {
         removeSession(game, pseudo);
         currentGame("None", pseudo);
     }
+
+    public static boolean pseudoAlreadyUsed(String pseudo){
+        boolean ok = true;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT pseudo FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()) {
+                if(res.getString(1) == pseudo){
+                    ok = false;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return ok;
+    }
+
+    public static boolean mailAlreadyUsed(String email){
+        boolean ok = true;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT email FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()) {
+                if(res.getString(1) == email){
+                    ok = false;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return ok;
+    }
+
+    public static String getPsw(String pseudo){
+        String psw = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT password FROM User WHERE pseudo = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1, pseudo);
+            res = statement.executeQuery();
+            while(res.next()) {
+                psw = res.getString(1);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return psw;
+    }
 }
