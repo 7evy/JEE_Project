@@ -513,6 +513,13 @@ public class SQL {
         }
     }
 
+    /**
+     * Deletes a session of a player and modifies the differents tables in consequence
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @param pseudo pseudo of the player
+     */
     public static void deleteSession(String game, String pseudo){
         removeUserToGame(game);
         removeSession(game, pseudo);

@@ -7,7 +7,6 @@ package tools;
 public class TestSQL{
 
     public static void main(String[] args) {
-        SQL.newGame("None");
         SQL.newGame("Skyrim");
         SQL.newGame("Fortnite");
         SQL.newGame("Zelda");
