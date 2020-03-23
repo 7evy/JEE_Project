@@ -527,7 +527,7 @@ public class SQL {
     }
 
     public static boolean pseudoAlreadyUsed(String pseudo){
-        boolean ok = true;
+        boolean ok = false;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -536,7 +536,7 @@ public class SQL {
             res = statement.executeQuery();
             while(res.next()) {
                 if(res.getString(1) == pseudo){
-                    ok = false;
+                    ok = true;
                 }
             }
         } catch (Exception e) {
@@ -547,7 +547,7 @@ public class SQL {
     }
 
     public static boolean mailAlreadyUsed(String email){
-        boolean ok = true;
+        boolean ok = false;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -556,7 +556,7 @@ public class SQL {
             res = statement.executeQuery();
             while(res.next()) {
                 if(res.getString(1) == email){
-                    ok = false;
+                    ok = true;
                 }
             }
         } catch (Exception e) {
