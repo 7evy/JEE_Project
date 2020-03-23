@@ -65,14 +65,34 @@ public class RegisterServlet extends HttpServlet {
         String favoriteGames = request.getParameter("favorite");
         System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday + " " + favoriteGames);
 
-        System.out.println(this.checkBirthday(birthday));
+        //Checking the age
+        if (!this.checkBirthday(birthday)){
+            //TODO
+            System.out.println("There is a pb with the date. You must be over 13 to register.");
+        }else{
 
-        // System.out.println(SDate.htmlToSdate(birthday));
+            //Checking if the passwords are the same pwd
+            if (this.checkPassword(pwd1, pwd2)){
+                //TODO
+                System.out.println("The 2 passwords given are different.");
+            }else{
+                
+                //Checking if the address is already used
+                if (!this.checkEMail(email)){
+                    //TODO
+                    System.out.println("Email already used.");
+                }else{
 
-        // TODO
-        // check informations + database + connect or pop up
-
-        response.sendRedirect("/gamechoice");
+                    //Checking is the nickname is already taken
+                    if (!this.checkNickname(nickname)){
+                        //TODO
+                        System.out.println("The nickname is already taken");
+                    }else{
+                        response.sendRedirect("/gamechoice");
+                    }
+                }
+            }
+        }
     }
 
     public boolean checkNickname(String pseudo) {
