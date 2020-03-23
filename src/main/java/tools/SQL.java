@@ -542,7 +542,7 @@ public class SQL {
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery();
             while(res.next()) {
-                if(res.getString(1) == pseudo){
+                if(res.getString(1).equalsIgnoreCase(pseudo)){
                     ok = true;
                 }
             }
@@ -569,7 +569,7 @@ public class SQL {
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery();
             while(res.next()) {
-                if(res.getString(1) == email){
+                if(res.getString(1).equalsIgnoreCase(email)){
                     ok = true;
                 }
             }
