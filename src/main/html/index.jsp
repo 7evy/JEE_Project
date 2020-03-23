@@ -18,7 +18,13 @@
             <input type="password" placeholder="password" id="password" name="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
-        <% if(request.getParameter("cred") == "1"){out.println("<p>Wrong credentials</p>");} %>
+        <%
+    if (request.getParameter("cred") == null) {
+        //default page
+    } else {
+        out.println("Wrong credentials");
+    }
+%>
         <a href="/register">Create a new account</a>
     </div></div>
 </body>
