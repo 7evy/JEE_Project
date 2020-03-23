@@ -19,12 +19,13 @@
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
         <%
-    if (request.getParameter("cred") == null) {
-        //default page
-    } else {
-        out.println("Wrong credentials");
-    }
-%>
+            if (request.getParameter("cred") == null) {
+                //default page
+            } else {
+                out.println("Wrong credentials");
+            }
+        %>
+        <br><br><br>
         <a href="/register">Create a new account</a>
     </div></div>
 </body>
