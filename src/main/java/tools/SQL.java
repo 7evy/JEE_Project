@@ -542,7 +542,7 @@ public class SQL {
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery();
             while(res.next()) {
-                if(res.getString(1).equalsIgnoreCase(pseudo)){
+                if(res.getString(1).equals(pseudo)){
                     ok = true;
                 }
             }
