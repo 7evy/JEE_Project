@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tools.SQL;
+
 //import tools.SDate;
 
 /**
@@ -72,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
         }else{
 
             //Checking if the passwords are the same pwd
-            if (this.checkPassword(pwd1, pwd2)){
+            if (!this.checkPassword(pwd1, pwd2)){
                 //TODO
                 System.out.println("The 2 passwords given are different.");
             }else{
@@ -96,23 +98,22 @@ public class RegisterServlet extends HttpServlet {
     }
 
     public boolean checkNickname(String pseudo) {
-        // TODO
-        return false;
+        return !SQL.pseudoAlreadyUsed(pseudo);
     }
 
     public boolean checkPassword(String pwd1, String pwd2) {
-        // TODO
-        return false;
+        return pwd1.equals(pwd2);
     }
 
     public boolean checkEMail(String email) {
-        // TODO
-        return false;
+        return !SQL.mailAlreadyUsed(email);
     }
 
     public boolean checkBirthday(String birthday) {
         try {
-            if (Integer.parseInt(birthday.split("-")[0]) > 2006) {
+            int year = Integer.parseInt(birthday.split("-")[0]);
+            if (year > 2006 || year < 1900) {
+                System.out.println("invalid date");
                 return false;
             }
             return true;
