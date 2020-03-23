@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -18,7 +20,13 @@
             <input type="password" placeholder="password" id="password" name="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
-        <% if(request.getParameter("cred") == "1"){out.println("<p>Wrong credentials</p>");} %>
+        <%
+            if (request.getParameter("cred") == null) {
+                //default page
+            } else {
+                out.println("Wrong credentials<br><br><br>");
+            }
+        %>
         <a href="/register">Create a new account</a>
     </div></div>
 </body>

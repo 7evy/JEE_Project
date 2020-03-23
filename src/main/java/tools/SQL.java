@@ -34,6 +34,7 @@ public class SQL {
             statement.setString(1, name);
             statement.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Jeu non créé !");
             e.getMessage();
             e.printStackTrace();
         }
@@ -65,6 +66,7 @@ public class SQL {
             statement.setInt(6,gameNull);
             statement.executeUpdate();
         } catch (Exception e) {
+            System.out.print("Utilisateur non créé !");
             e.getMessage();
         }
     }
@@ -77,7 +79,7 @@ public class SQL {
      * @return the id of the user
      */
     public static int getUserId(String pseudo) {
-        int id = 0;
+        int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -91,6 +93,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Utilisateur non valide !");
         }
         return id;
     }
@@ -103,7 +106,7 @@ public class SQL {
      * @return the id of the game
      */
     public static int getGameId(String name) {
-        int id = 0;
+        int id = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -117,6 +120,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Jeu non valide !");
         }
         return id;
     }
@@ -142,6 +146,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur ou jeu non valide !");
         }
     }
 
@@ -172,6 +177,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur ou jeu non valide !");
         }
     }
 
@@ -193,6 +199,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
     }
 
@@ -214,6 +221,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
     }
 
@@ -234,6 +242,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
     }
 
@@ -254,6 +263,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
     }
 
@@ -318,6 +328,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
         return array;
     }
@@ -345,6 +356,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
         return nb;
     }
@@ -398,6 +410,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Jeu non valide !");
         }
     }
 
@@ -420,6 +433,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Jeu non valide !");
         }
     }
 
@@ -446,6 +460,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Jeu non valide !");
         }
         return nb;
     }
@@ -470,6 +485,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur ou jeu non valide !");
         }
     }
 
@@ -510,6 +526,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Session non existante !");
         }
     }
 
@@ -602,6 +619,7 @@ public class SQL {
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
+            System.out.println("Joueur non valide !");
         }
         return psw;
     }
