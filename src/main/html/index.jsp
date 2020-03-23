@@ -18,8 +18,7 @@
             <input type="password" placeholder="password" id="password" name="password"><br><br>
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
-        <c:if test="${HomeServlet.connectionCheck() == false}">Wrong credentials</c:if>
-        <c:if test="${HomeServlet.connectionCheck() == true}">Redirect...</c:if>
+        <c:if test="${cred == 1}">Wrong credentials</c:if>
         <a href="/register">Create a new account</a>
     </div></div>
 </body>

@@ -26,8 +26,7 @@ public class HomeServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
-    private static String nickname = null;
-    private static String pwd = null;
+    public int cred = 0;
 
     /**
      * Displays the page
@@ -61,11 +60,16 @@ public class HomeServlet extends HttpServlet {
      * @author Sébastien HERT
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        nickname = request.getParameter("nickname");
-        pwd = request.getParameter("password");
+        String nickname = request.getParameter("nickname");
+        String pwd = request.getParameter("password");
+        if(connectionCheck(nickname,pwd) == true){
+            response.sendRedirect("/gamechoice");
+        }else{
+            cred = 1;
+        }
     }
 
-    public boolean connectionCheck(){
+    public boolean connectionCheck(String nickname, String pwd){
         boolean res = false;
         if(nickname != null && pwd != null && nickname != "" && pwd != ""){
             res = false;
