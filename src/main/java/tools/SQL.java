@@ -40,7 +40,7 @@ public class SQL {
     }
 
     /**
-     * Adds a new user in the database
+     * Adds a new user in the database.
      * 
      * @author Adam RIVIERE
      * @param pseudo       pseudo of the user
@@ -52,15 +52,17 @@ public class SQL {
      */
     public static void newUser(String pseudo, String password, String email, String registration, String birthDate) {
         try {
+            int gameNull = getGameId("None");
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate) VALUES(?,?,?,1,?,?);";
+            String request = "INSERT INTO User(pseudo,password,email,status,registration,birthDate,currentGame) VALUES(?,?,?,1,?,?,?);";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
             statement.setString(2, password);
             statement.setString(3, email);
             statement.setString(4, registration);
             statement.setString(5, birthDate);
+            statement.setInt(6,gameNull);
             statement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -389,7 +391,7 @@ public class SQL {
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            int nb = nbPlayers(game) + 1;
+            int nb = nbPlayers(game);
             statement.setInt(1, nb);
             statement.setString(2, game);
             statement.executeUpdate();
@@ -411,7 +413,7 @@ public class SQL {
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            int nb = nbPlayers(game) - 1;
+            int nb = nbPlayers(game);
             statement.setInt(1, nb);
             statement.setString(2, game);
             statement.executeUpdate();
@@ -511,9 +513,96 @@ public class SQL {
         }
     }
 
+    /**
+     * Deletes a session of a player and modifies the differents tables in consequence
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @param pseudo pseudo of the player
+     */
     public static void deleteSession(String game, String pseudo){
         removeUserToGame(game);
         removeSession(game, pseudo);
         currentGame("None", pseudo);
+    }
+
+    /**
+     * Verifies if the pseudo is already used
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the new user
+     * @return a boolean
+     */
+    public static boolean pseudoAlreadyUsed(String pseudo){
+        boolean ok = false;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT pseudo FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()) {
+                if(res.getString(1).equals(pseudo)){
+                    ok = true;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return ok;
+    }
+
+    /**
+     * Verifies if an email is already used
+     * 
+     * @author Adam RIVIERE
+     * @param email new emaail to test
+     * @return a boolean
+     */
+    public static boolean mailAlreadyUsed(String email){
+        boolean ok = false;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT email FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()) {
+                if(res.getString(1).equalsIgnoreCase(email)){
+                    ok = true;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return ok;
+    }
+
+    /**
+     * Gets the hashed password of a user
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the user
+     * @return the hashed password
+     */
+    public static String getPsw(String pseudo){
+        String psw = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT password FROM User WHERE pseudo = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1, pseudo);
+            res = statement.executeQuery();
+            while(res.next()) {
+                psw = res.getString(1);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return psw;
     }
 }
