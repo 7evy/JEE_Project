@@ -88,16 +88,22 @@ public class SDate{
      */
     public SDate(String s){
 
-        String[] sParse = s.split(" - ");
-        String[] sParseDate = sParse[0].split("/");
-        String[] sParseTime = sParse[1].split(":");
+        try{
+            String[] sParse = s.split(" - ");
+            String[] sParseDate = sParse[0].split("/");
+            String[] sParseTime = sParse[1].split(":");
 
-        this.year = Integer.parseInt(sParseDate[0]);
-        this.month = Integer.parseInt(sParseDate[1]);
-        this.day = Integer.parseInt(sParseDate[2]);
-        this.hour = Integer.parseInt(sParseTime[0]);
-        this.min = Integer.parseInt(sParseTime[1]);
-        this.sec = Integer.parseInt(sParseTime[2]);
+            this.year = Integer.parseInt(sParseDate[0]);
+            this.month = Integer.parseInt(sParseDate[1]);
+            this.day = Integer.parseInt(sParseDate[2]);
+            this.hour = Integer.parseInt(sParseTime[0]);
+            this.min = Integer.parseInt(sParseTime[1]);
+            this.sec = Integer.parseInt(sParseTime[2]);
+        }catch(NumberFormatException e){
+            System.out.println("Error : Arguments arent valid numbers");
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Error : the Date given doesnt have the right format, please use the yyyy/mm/dd - hh/mm/ss format");
+        }
     }
 
     /**
@@ -209,7 +215,7 @@ public class SDate{
     }
 
     /**
-     * ToString method
+     * ToString method with the format yyyy/mm/dd - hh/mm/ss
      * @return the date as a String
      * @author Sébastien HERT
      */
@@ -608,6 +614,7 @@ public class SDate{
      * Creates a SDate with the current time
      * @return the current date
      * @see #delay the class variable delay
+     * @author Sébastien HERT
      */
     public static SDate now(){
         SDate date = new SDate(1970, 1, 1);
@@ -624,6 +631,28 @@ public class SDate{
         else { date.removeHour(delay);}
 
         return date;
+    }
+
+
+    /**
+     * Convert a string date from html to Sdate
+     * @param htmlDate the date to convert
+     * @return sDate the date converted
+     * @author Sébastien HERT
+     */
+    public static SDate htmlToSdate(String htmlDate){
+        String[] parsingDate = htmlDate.split("-");
+        SDate sDate = null;
+        try{
+            sDate = new SDate(Integer.parseInt(parsingDate[0]),Integer.parseInt(parsingDate[1]),Integer.parseInt(parsingDate[2]));
+        }catch(NumberFormatException e){
+            System.out.println("Error : Arguments arent valid numbers");
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Error : the Date given doesnt have the right format, please use the dd-mm-yyyy format");
+        }
+
+        return sDate;
+
     }
     
 }
