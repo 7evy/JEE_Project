@@ -526,6 +526,13 @@ public class SQL {
         currentGame("None", pseudo);
     }
 
+    /**
+     * Verifies if the pseudo is already used
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the new user
+     * @return a boolean
+     */
     public static boolean pseudoAlreadyUsed(String pseudo){
         boolean ok = false;
         try {
@@ -546,6 +553,13 @@ public class SQL {
         return ok;
     }
 
+    /**
+     * Verifies if an email is already used
+     * 
+     * @author Adam RIVIERE
+     * @param email new emaail to test
+     * @return a boolean
+     */
     public static boolean mailAlreadyUsed(String email){
         boolean ok = false;
         try {
@@ -566,6 +580,13 @@ public class SQL {
         return ok;
     }
 
+    /**
+     * Gets the hashed password of a user
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the user
+     * @return the hashed password
+     */
     public static String getPsw(String pseudo){
         String psw = "";
         try {
