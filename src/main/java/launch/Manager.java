@@ -1,6 +1,9 @@
 package launch;
 
 import user.User;
+
+import java.util.ArrayList;
+
 import user.Game;
 
 
@@ -66,5 +69,19 @@ public class Manager{
      */
     public static User getObservedUser(){
         return observedUser;
+    }
+
+    /**
+     * Concatenates the elements of the list into a single String.
+     * @param list List to make a String out of.
+     * @return A String containing all the elements of the list, separated by ";".
+     * @author Dejan PARIS
+     */
+    public static String listToString(ArrayList<String> list)
+    {
+        String s = list.get(0);
+        for (int i=1 ; i<list.size() ; i++)
+            s = s + ";" + list.get(i);
+        return s;
     }
 }
