@@ -631,8 +631,8 @@ public class SQL {
      * @param pseudo pseudo of the user
      * @return the status of the user
      */
-    public static String getStatus(String pseudo){
-        String status = "";
+    public static int getStatus(String pseudo){
+        int status = -1;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -641,7 +641,7 @@ public class SQL {
             statement.setString(1, pseudo);
             res = statement.executeQuery();
             while(res.next()) {
-                status = res.getString(1);
+                status = res.getInt(1);
             }
         } catch (Exception e) {
             e.getMessage();
