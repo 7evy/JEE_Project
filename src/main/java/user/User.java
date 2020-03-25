@@ -14,11 +14,18 @@ public class User{
     private String pseudo;
     private String pwd;
     private String eMail;
-    private UserStatus status;
     private SDate registration;
     private SDate birth;
     private ArrayList<Game> games;
     private int nbSessions;
+    
+    private int status;
+    /**
+     * 0 = Admin
+     * 1 = Player
+     * 2 = Suspended
+     * 4 = Banned
+     */
 
     /**
      * Constructor
@@ -28,6 +35,7 @@ public class User{
         this.pseudo = null;
         this.pwd = null;
         this.eMail = null;
+        this.status = -1;
         this.registration = new SDate();
         this.birth = new SDate();
         this.games = new ArrayList<Game>();
@@ -46,7 +54,7 @@ public class User{
      * @param nbSessions the number of sessions
      * @author Sébastien HERT
      */
-    public User(String pseudo, String pwd, String eMail, UserStatus status, SDate registration, SDate birth, ArrayList<Game> games, int nbSessions){
+    public User(String pseudo, String pwd, String eMail, int status, SDate registration, SDate birth, ArrayList<Game> games, int nbSessions){
         this.pseudo = pseudo;
         this.pwd = pwd;
         this.eMail = eMail;
@@ -66,7 +74,7 @@ public class User{
         this.pseudo = pseudo;
         this.pwd = null;
         this.eMail = null;
-        this.status = null;
+        this.status = SQL.getStatus(pseudo);
         this.registration = new SDate();
         this.birth = new SDate();
         this.games = new ArrayList<Game>();
@@ -132,7 +140,7 @@ public class User{
      * @return the status
      * @author Sébastien HERT
      */
-    public UserStatus getStatus() {
+    public int getStatus() {
         return this.status;
     }
 
@@ -141,7 +149,7 @@ public class User{
      * @param status to set
      * @author Sébastien HERT
      */
-    public void setStatus(UserStatus status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

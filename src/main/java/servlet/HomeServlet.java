@@ -64,8 +64,28 @@ public class HomeServlet extends HttpServlet {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
         if(connectionCheck(nickname,pwd) == true){
-            Manager.setCurrentUser(new User(nickname));
-            response.sendRedirect("/gamechoice");
+            User user = new User(nickname);
+            Manager.setCurrentUser(user);
+
+            switch (user.getStatus()) {
+                //Admin
+                case 0:
+                    //TODO
+                    // response.sendRedirect("/gamelist");
+                    response.sendRedirect("/gamechoice");
+                    break;
+                //Player
+                case 1:
+                    response.sendRedirect("/gamechoice");
+                    break;
+                //Suspended or Banned
+                case 2:
+                case 3:
+                    //TODO
+                    break;
+                default:
+                    break;
+            }
         }else{
             response.sendRedirect("/index.jsp?cred=1");
         }
