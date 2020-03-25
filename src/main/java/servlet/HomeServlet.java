@@ -82,6 +82,7 @@ public class HomeServlet extends HttpServlet {
                 case 2:
                 case 3:
                     //TODO
+                    break;
                 default:
                     break;
             }
