@@ -7,6 +7,7 @@ import tools.*;
 /**
  * This class contains all the methods relative to the user
  * @author Sébastien HERT
+ * @author Adam RIVIERE
  */
 public class User{
 
@@ -54,6 +55,22 @@ public class User{
         this.birth = birth;
         this.games = games;
         this.nbSessions = nbSessions;
+    }
+
+    /**
+     * Constructor
+     * @param pseudo the pseudo
+     * @author Sébastien HERT
+     */
+    public User(String pseudo){
+        this.pseudo = pseudo;
+        this.pwd = null;
+        this.eMail = null;
+        this.status = null;
+        this.registration = new SDate();
+        this.birth = new SDate();
+        this.games = new ArrayList<Game>();
+        this.nbSessions = 0;
     }
 
     /**

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import launch.Manager;
+import user.User;
 import tools.Hasher;
 import tools.SQL;
 
@@ -55,12 +57,14 @@ public class HomeServlet extends HttpServlet {
      * Connects the user or returns to login screen if credentials are wrong
      * @param request
      * @param response
-     * @author Sébastien HERT, Thomas LEPERCQ
+     * @author Sébastien HERT
+     * @author Thomas LEPERCQ
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
         if(connectionCheck(nickname,pwd) == true){
+            Manager.setCurrentUser(new User(nickname));
             response.sendRedirect("/gamechoice");
         }else{
             response.sendRedirect("/index.jsp?cred=1");
