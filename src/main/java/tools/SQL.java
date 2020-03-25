@@ -623,4 +623,31 @@ public class SQL {
         }
         return psw;
     }
+
+    /**
+     * Gets the status of a user
+     * 
+     * @author Adam RIVIERE
+     * @param pseudo pseudo of the user
+     * @return the status of the user
+     */
+    public static String getStatus(String pseudo){
+        String status = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT status FROM User WHERE pseudo = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1, pseudo);
+            res = statement.executeQuery();
+            while(res.next()) {
+                status = res.getString(1);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("Joueur non valide !");
+        }
+        return status;
+    }
 }
