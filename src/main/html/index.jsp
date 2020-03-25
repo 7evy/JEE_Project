@@ -23,9 +23,9 @@
         <%
             if (request.getParameter("cred") == null) {
                 //default page
-            } else {
-                out.println("Wrong credentials<br><br><br>");
-            }
+            } else { %>
+                Wrong credentials<br><br><br>
+            <% }
         %>
         <a href="/register">Create a new account</a>
     </div></div>
