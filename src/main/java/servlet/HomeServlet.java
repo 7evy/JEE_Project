@@ -52,10 +52,10 @@ public class HomeServlet extends HttpServlet {
 
     /**
      * Gets the login and the password
-     * Checks if the user is registered and then connect him
+     * Connects the user or returns to login screen if credentials are wrong
      * @param request
      * @param response
-     * @author Sébastien HERT
+     * @author Sébastien HERT, Thomas LEPERCQ
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
@@ -67,6 +67,13 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Gets the login and the password
+     * Checks if the user is registered and then compares passwords
+     * @param nickname
+     * @param password
+     * @author Thomas LEPERCQ
+     */
     public boolean connectionCheck(String nickname, String pwd){
         boolean res = false;
         if(nickname == null && pwd == null && nickname == "" && pwd == ""){
