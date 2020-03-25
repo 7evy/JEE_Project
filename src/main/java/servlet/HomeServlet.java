@@ -76,7 +76,7 @@ public class HomeServlet extends HttpServlet {
      */
     public boolean connectionCheck(String nickname, String pwd){
         boolean res = false;
-        if(nickname == null && pwd == null && nickname == "" && pwd == ""){
+        if(nickname == null || pwd == null || nickname.equals("") || pwd.equals("")){
             res = false;
         }else if(Hasher.hashing(pwd).equals(SQL.getPsw(nickname))){
             res = true;
