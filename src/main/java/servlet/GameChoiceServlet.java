@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import tools.SQL;
+import launch.Manager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,12 +31,18 @@ public class GameChoiceServlet extends HttpServlet {
      * @param response
      * @author Sébastien HERT
      */
+    // TODO
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pageName = "/gamechoice.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
+            System.out.println(Manager.getCurrentUser().getPseudo());
+            // String data = Manager.listToString(SQL.gameList(Manager.getCurrentUser().getPseudo()));
+            ArrayList<String> data = new ArrayList<String>();
+            data.add("default");
+            request.setAttribute("data", Manager.listToString(data));
             rd.forward(request, response);
         } catch (ServletException e) {
             System.out.println("Error : ServletException");

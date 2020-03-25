@@ -13,13 +13,18 @@
     <h1 align="center">Choose a game</h1>
     <br>
     <div align="center">
+    <form action="/gamechoice" method="get">
+        <!--   <% String[] games = request.getParameter("data").split(";"); %>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="50%">Game</th>
                 <th width="50%">Number of players</th>
             </tr>
-            $entries
-        </table>
+            <tr>
+                <td> <% games[0]; %> </td>
+            </tr>
+        </table>   -->
+    </form>
     </div></div>
 </body>
 </html>
