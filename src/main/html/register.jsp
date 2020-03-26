@@ -8,9 +8,8 @@
     <title>Register</title>
 </head>
 <a href="/">
-<button class="favorite styled"
-        type="button">
-    Go Back
+<button type="button">
+    back to login
 </button>
 </a>
 <body>
