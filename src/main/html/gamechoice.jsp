@@ -25,7 +25,7 @@
                 <th width="30%">Number of players</th>
             </tr>
             <% for (int i=0 ; i<games.size() ; i+=2) { %>
-                <tr id="clickable" onclick="document.location='/playing.jsp?name=a'">
+                <tr id="clickable" onclick="document.location='/playing.jsp?name=<%=games.get(i)%>'">
                     <td> <% out.println(games.get(i)); %> </td>
                     <td> <% out.println(games.get(i+1)); %> </td>
                 </tr>

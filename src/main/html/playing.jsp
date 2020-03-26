@@ -9,6 +9,6 @@
     <title>Playing</title>
 </head>
 <body>
-<h1> Currently playing : <% request.getParameter("name"); %></h1>
+<h1> Currently playing : <% out.println(request.getParameter("name")); %></h1>
 </body>
 </html>
