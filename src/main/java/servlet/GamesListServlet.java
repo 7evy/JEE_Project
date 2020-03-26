@@ -39,23 +39,12 @@ public class GamesListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String pageName = "/gameslist.jsp";
-        User user = Manager.getCurrentUser();
-        // Prevents access if you are not an administrator
-        if (user == null)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 1)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 2)
-            response.sendRedirect("/index.jsp?cred=2");
-        else
-        {
-            try {
-                String games = Manager.makeGamesList();
-                response.sendRedirect(pageName + "?data=" + games);
-            } catch (IOException e) {
-                System.out.println("Error : IOException");
-                e.printStackTrace();
-            }
+        try {
+            String games = Manager.makeGamesList();
+            response.sendRedirect(pageName + "?data=" + games);
+        } catch (IOException e) {
+            System.out.println("Error : IOException");
+            e.printStackTrace();
         }
     }
 
