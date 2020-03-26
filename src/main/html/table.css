@@ -52,10 +52,6 @@ h1{
   width: 17%;
 }
 
-#clickable {
-  cursor: pointer;
-}
-
 input[type=submit] {
   height: 4%;
   width: 6%;
