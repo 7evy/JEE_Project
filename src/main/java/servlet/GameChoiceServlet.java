@@ -1,12 +1,12 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import tools.SQL;
+// import java.util.ArrayList;
+// import tools.SQL;
 import launch.Manager;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+// import javax.servlet.RequestDispatcher;
+// import javax.servlet.ServletException;
 // import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
