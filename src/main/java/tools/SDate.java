@@ -650,9 +650,16 @@ public class SDate{
         }catch(ArrayIndexOutOfBoundsException e){
             System.out.println("Error : the Date given doesnt have the right format, please use the yyyy-mm-dd format");
         }
-
         return sDate;
+    }
 
+     /**
+     * ToString methods with the format yyyy/mm/dd
+     * @return the date as a String
+     * @author Sébastien HERT
+     */
+    public String printDay(){
+        return this.year+"/"+feelZero(this.month)+"/"+feelZero(this.day);
     }
     
 }

@@ -4,6 +4,7 @@ import user.User;
 
 import java.util.ArrayList;
 
+import tools.SDate;
 import tools.SQL;
 import user.Game;
 
@@ -116,5 +117,22 @@ public class Manager{
         ArrayList<String> favs = SQL.gameList(getCurrentUser().getPseudo());
         int len = favs.size();
         return len;
+    }
+
+    /**
+     * Concatains users informations
+     * @return the Infos as a String
+     * @author Sébastien HERT
+     */
+    public static String makeUserDetails(){
+        //TODO
+        // ArrayList<String> array = SQL.playerInfo(observedUser.getPseudo());
+        ArrayList<String> array = SQL.playerInfo("toto");
+        String userInfos = "";
+        for (int i = 0; i < array.size() -1 ; i++){
+            userInfos = userInfos.concat(array.get(i)+";");
+        }
+        userInfos = userInfos.concat((new SDate(array.get(4))).printDay());
+        return userInfos;
     }
 }
