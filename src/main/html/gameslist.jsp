@@ -12,12 +12,12 @@
 </head>
 <div>
     <a href="/">
-    <button class=""
+    <button id="change"
             type="button">
         Disconnect
     </button>
     </a><a href="/playerslist.jsp">
-    <button class=""
+    <button id="change"
             type="button">
         To Players list
     </button>
