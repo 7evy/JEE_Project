@@ -16,13 +16,13 @@
         <br><br><br>
         <h1 align="center">Game list</h1>
         <br>
-        <button id="addelete" name="addelete" value="add">Add</button>
-        <button id="addelete" name="addelete" value="delete">Delete</button>
-        <br><br>
-        <div align="center">
-            <form action="/gameslist" method="get"></form>
+        <form action="/gameslist" method="post"></form>
+            <button id="addelete" name="addelete" value="add">Add</button>
+            <button id="addelete" name="addelete" value="delete">Delete</button>
+            <br><br>
+            <div align="center">
                 <% String data = request.getParameter("data");
-            List<String> games = Arrays.asList(data.split(";"));%>
+                List<String> games = Arrays.asList(data.split(";"));%>
                 <table border="1px solid black">
                     <tr border="1px solid black">
                         <th width="50%">Game</th>
@@ -36,8 +36,8 @@
                     </tr>
                     <% } %>
                 </table>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </body>
 
