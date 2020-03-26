@@ -236,7 +236,7 @@ public class User{
      * @param games the AL of Games
      * @author Adam RIVIERE
      */
-    public void pushUser(String pseudo, String pwd, String eMail, UserStatus status, SDate registration, SDate birth, ArrayList<Game> games){
+    public void pushUser(String pseudo, String pwd, String eMail,int status, SDate registration, SDate birth, ArrayList<Game> games){
         // User user = new User(pseudo, pwd, eMail, status, registration, birth, games, 0);
         String hpwd = Hasher.hashing(pwd);
         SQL.newUser(pseudo, hpwd, eMail, registration.toString(), birth.toString());
