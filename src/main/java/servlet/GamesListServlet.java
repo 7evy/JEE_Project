@@ -1,6 +1,10 @@
 package servlet;
 
+import tools.Hasher;
 import tools.SQL;
+import user.User;
+import servlet.HomeServlet;
+
 import java.io.IOException;
 import launch.Manager;
 import java.util.List;
@@ -13,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 /**
  * Describes the servlet used on the gameslist page
@@ -37,12 +42,22 @@ public class GamesListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String pageName = "/gameslist.jsp";
-        try {
-            String games = Manager.makeGamesList();
-            response.sendRedirect(pageName + "?data=" + games);
-        } catch (IOException e) {
-            System.out.println("Error : IOException");
-            e.printStackTrace();
+        User user = Manager.getCurrentUser();
+        if (user == null || !new HomeServlet().connectionCheck(user.getPseudo(), user.getPwd()))
+            response.sendRedirect("/index.jsp?cred=1");
+        else if (user.getStatus() == 1)
+            response.sendRedirect("/index.jsp?cred=1");
+        else if (user.getStatus() == 2)
+            response.sendRedirect("/index.jsp?cred=2");
+        else
+        {
+            try {
+                String games = Manager.makeGamesList();
+                response.sendRedirect(pageName + "?data=" + games);
+            } catch (IOException e) {
+                System.out.println("Error : IOException");
+                e.printStackTrace();
+            }
         }
     }
 
