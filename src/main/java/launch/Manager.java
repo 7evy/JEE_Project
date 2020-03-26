@@ -15,7 +15,7 @@ import user.Game;
  */
 public class Manager{
 
-    private static User currentUser;
+    private static User currentUser = null;
     private static Game currentGame;
     private static User observedUser;
 
