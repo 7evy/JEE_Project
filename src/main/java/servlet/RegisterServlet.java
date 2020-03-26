@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tools.SQL;
-
-//import tools.SDate;
+import user.User;
+import tools.Hasher;
+import tools.SDate;
+import launch.Manager;
 
 /**
  * Describes the servlet used on the register page
@@ -70,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
         String pwd2 = request.getParameter("password2");
         String email = request.getParameter("email");
         String birthday = request.getParameter("birthday");
-        System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
+        // System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
 
          ArrayList<String> argUrlList=new ArrayList<String>();
          String argUrl = "";
@@ -107,8 +109,11 @@ public class RegisterServlet extends HttpServlet {
             argUrl = argUrl.concat(argUrlList.get(j)+"&");
           }
 
-        if(argUrl == ""){
-         response.sendRedirect("/gamechoice");
+        if(argUrl.equals("")){
+            // User user = new User()
+            SQL.newUser(nickname, Hasher.hashing(pwd1), email, SDate.now().toString(), SDate.htmlToSdate(birthday).toString());
+            Manager.setCurrentUser(new User(nickname));
+            response.sendRedirect("/gamechoice");
         }
         else{
             String s = "/register.jsp?";
