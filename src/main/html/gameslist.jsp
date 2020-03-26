@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 
@@ -18,12 +20,23 @@
         <button id="addelete">Delete</button>
         <br><br>
         <div align="center">
-            <table border="1px solid black">
-                <tr border="1px solid black">
-                    <th>Game</th>
-                </tr>
-                $entries
-            </table><br><br>
+            <form action="/gameslist" method="get"></form>
+                <% String data = request.getParameter("data");
+            List<String> games = Arrays.asList(data.split(";"));%>
+                <table border="1px solid black">
+                    <tr border="1px solid black">
+                        <th width="50%">Game</th>
+                        <th width="50%">Number of players</th>
+                    </tr>
+                    <% for (int i=0 ; i<games.size() ; i+=2){ %>
+                    <tr>
+                        <td> <% out.println(games.get(i)); %> </td>
+                        <td> <% out.println(games.get(i+1)); %> </td>
+                        <td> <input type="checkbox" id=<% games.get(i); %> name="selection"> </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </form>
         </div>
     </div>
 </body>
