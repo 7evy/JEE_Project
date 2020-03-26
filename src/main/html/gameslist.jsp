@@ -3,7 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Arrays" %>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="tab.css" />
+<link rel="stylesheet" type="text/css" href="table.css" />
 
 <head>
     <meta charset="UTF-8">

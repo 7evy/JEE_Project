@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="tab.css" />
+<link rel="stylesheet" type="text/css" href="table.css" />
 
 <head>
     <meta charset="UTF-8">
