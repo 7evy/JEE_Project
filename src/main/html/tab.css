@@ -33,6 +33,16 @@ th, td {
   border: 2px solid black;
 }
 
+#clickable {
+  background: red !important;
+}
+tr:hover {
+  background-color: white !important;
+}
+tr:hover td {
+  background-color: white !important;
+}
+
 h1{
   font-size: 3rem;
 }
