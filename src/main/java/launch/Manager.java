@@ -150,9 +150,9 @@ public class Manager{
                 // System.out.println(playersList.size());
                 if (playersList.get(i) != null){
                     // System.out.println(playersList.get(i).get(0));
-                    players = players.concat((String) playersList.get(i).get(0)+"|");
+                    players = players.concat((String) playersList.get(i).get(0)+"!");
                     // System.out.println(playersList.get(i).get(1));
-                    players = players.concat((String) playersList.get(i).get(1)+"|");
+                    players = players.concat((String) playersList.get(i).get(1)+"!");
                     // System.out.println(playersList.get(i).get(3));
                     players = players.concat(Integer.toString((Integer) playersList.get(i).get(3))+";");
                 }
