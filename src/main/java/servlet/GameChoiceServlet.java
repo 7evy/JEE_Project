@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-// import tools.SQL;
+import tools.SQL;
 import launch.Manager;
 
 import javax.servlet.RequestDispatcher;
@@ -38,12 +38,12 @@ public class GameChoiceServlet extends HttpServlet {
             throws IOException {
         String pageName = "/gamechoice.jsp";
         try {
-            // String data = Manager.listToString(SQL.gameList(Manager.getCurrentUser().getPseudo()));
+            String str = Manager.listToString(SQL.allGames());
             ArrayList<String> data = new ArrayList<String>();   // Temporary
             data.add("Minecraft"); data.add("1");               // Temporary
             data.add("Fortnite"); data.add("0");                // Temporary
             data.add("Dragon Quest"); data.add("3");            // Temporary
-            response.sendRedirect(pageName + "?data=" + Manager.listToString(data));
+            response.sendRedirect(pageName + "?data=" + str);
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();
