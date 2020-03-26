@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
@@ -14,16 +16,17 @@
     <br>
     <div align="center">
     <form action="/gamechoice" method="get">
-        <!--   <% String[] games = request.getParameter("data").split(";"); %>
+        <!-- <% String[] str = request.getParameter("data").split(";");
+           List<String> games = Arrays.asList(str);%>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="50%">Game</th>
                 <th width="50%">Number of players</th>
             </tr>
             <tr>
-                <td> <% games[0]; %> </td>
+                <td> <% games.get(0); %> </td>
             </tr>
-        </table>   -->
+        </table>  -->
     </form>
     </div></div>
 </body>

@@ -79,9 +79,9 @@ public class Manager{
      */
     public static String listToString(ArrayList<String> list)
     {
-        String s = list.get(0);
-        for (int i=1 ; i<list.size() ; i++)
-            s = s + ";" + list.get(i);
+        String s = "";
+        for (int i=0 ; i<list.size() ; i++)
+            s = s + list.get(i) + ";";
         return s;
     }
 }

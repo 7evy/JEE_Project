@@ -38,9 +38,10 @@ public class GameChoiceServlet extends HttpServlet {
         String pageName = "/gamechoice.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
-            System.out.println(Manager.getCurrentUser().getPseudo());
             // String data = Manager.listToString(SQL.gameList(Manager.getCurrentUser().getPseudo()));
             ArrayList<String> data = new ArrayList<String>();
+            data.add("default");
+            data.add("default");
             data.add("default");
             request.setAttribute("data", Manager.listToString(data));
             rd.forward(request, response);
