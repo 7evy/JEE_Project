@@ -2,7 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import tools.SQL;
+// import tools.SQL;
 import launch.Manager;
 
 import javax.servlet.RequestDispatcher;

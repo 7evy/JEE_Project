@@ -23,8 +23,7 @@ public class User{
     /**
      * 0 = Admin
      * 1 = Player
-     * 2 = Suspended
-     * 4 = Banned
+     * 2 = Banned
      */
 
     /**
