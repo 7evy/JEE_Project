@@ -34,13 +34,11 @@ th, td {
 }
 
 #clickable {
-  background: red !important;
+  cursor: pointer;
 }
-tr:hover {
-  background-color: white !important;
-}
-tr:hover td {
-  background-color: white !important;
+
+#clickable:hover {
+  background: white !important;
 }
 
 h1{
