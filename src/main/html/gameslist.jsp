@@ -46,8 +46,8 @@
                     </tr>
                     <% for (int i=0 ; i<games.size() ; i+=2){ %>
                     <tr>
-                        <td> <% out.println(games.get(i)); %> </td>
-                        <td> <% out.println(games.get(i+1)); %> </td>
+                        <td> <%= games.get(i) %> </td>
+                        <td> <%= games.get(i+1) %> </td>
                         <td> <input type="checkbox" name="checkbox" value=<% out.println(i); %>> </td>
                     </tr>
                     <% } %>
