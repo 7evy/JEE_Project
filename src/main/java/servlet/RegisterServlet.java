@@ -30,7 +30,6 @@ public class RegisterServlet extends HttpServlet {
      *
      */
     private static final long serialVersionUID = 1L;
-    private ArrayList<String> argUrlList=new ArrayList<String>();
 
     /**
      * Displays the page
@@ -42,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pageName = "/register.html";
+        String pageName = "/register.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             rd.forward(request, response);
@@ -73,6 +72,9 @@ public class RegisterServlet extends HttpServlet {
         String birthday = request.getParameter("birthday");
         System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
 
+         ArrayList<String> argUrlList=new ArrayList<String>();
+         String argUrl = "";
+
         //Checking the age
         if (!this.checkBirthday(birthday)){
             //TODO
@@ -100,16 +102,19 @@ public class RegisterServlet extends HttpServlet {
             argUrlList.add("nickname=1");
             System.out.println("The nickname is already taken");
         }
+        
+        for(int j =0;j<argUrlList.size();j++){
+            argUrl = argUrl.concat(argUrlList.get(j)+"&");
+          }
 
-
-       /* if(argUrl == ""){
+        if(argUrl == ""){
          response.sendRedirect("/gamechoice");
         }
         else{
             String s = "/register.jsp?";
             s = s.concat(argUrl);
             response.sendRedirect(s);
-        }*/
+        }
     }
 
     /**
