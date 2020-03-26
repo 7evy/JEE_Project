@@ -15,8 +15,9 @@
     <button type="button">
         Disconnect
     </button>
-    </a><a href="/playerslist.jsp">
-    <button type="button">
+    </a>
+    <a href="/playerslist.jsp">
+    <button type="button" style="float: right;">
         Players
     </button>
     </a>
