@@ -11,8 +11,7 @@
     <title>Document</title>
 </head>
 <a href="/">
-<button class="favorite styled"
-        type="button">
+<button type="button">
     Disconnect
 </button>
 </a>
