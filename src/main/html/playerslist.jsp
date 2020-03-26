@@ -21,7 +21,6 @@
                     <th>Registration date</th>
                     <th>Sessions played</th>
                 </tr>
-                $entries
             </table><br><br>
             <button id="ban">Ban</button>
         </div>

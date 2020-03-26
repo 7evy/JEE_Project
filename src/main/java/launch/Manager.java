@@ -129,10 +129,9 @@ public class Manager{
         // ArrayList<String> array = SQL.playerInfo(observedUser.getPseudo());
         ArrayList<String> array = SQL.playerInfo("toto");
         String userInfos = "";
-        for (int i = 0; i < array.size() -1 ; i++){
-            userInfos = userInfos.concat(array.get(i)+";");
-        }
-        userInfos = userInfos.concat((new SDate(array.get(4))).printDay());
+        for (int i = 0; i < array.size() -1 ; i++)
+            userInfos = userInfos + array.get(i) + ";";
+        userInfos = userInfos + new SDate(array.get(4)).printDay();
         return userInfos;
     }
 }

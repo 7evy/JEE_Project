@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import=java.util.List %>
+<%@ page import=java.util.Arrays %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="form.css" />
 
@@ -16,48 +18,40 @@
         </h1><br>
         <div align="center">
             <form action="player" method="get">
+                <% String data = request.getParameter("data"); %>
+                <% List<String> details = Arrays.asList(data.split(";")); %>
                 <table>
                     <tr>
-                        <td align="right"><label>Nickname :</label></td>
-                        <td><input type="text" placeholder="nickname" id="nickname"></td>
+                        <td> Nickname : </td><td> <%= details.get(0); %>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td align="right"><label>Password :</label></td>
-                        <td><input type="password" placeholder="password" id="password"></td>
+                        <td> Email address : </td><td> <%= details.get(1); %>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td align="right"><label>Confirm password :</label></td>
-                        <td><input type="password" placeholder="password" id="confirm"></td>
+                        <td> Currently playing : </td><td> <%= details.get(2); %>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td align="right"><label>E-mail :</label></td>
-                        <td><input type="text" placeholder="email" id="email"></td>
+                        <td> Registration date : </td><td> <%= details.get(3); %>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td align="right"><label>Birthday :</label></td>
-                        <td><input type="date" placeholder="mm/dd/yyyy" id="birthday"></td>
+                        <td> Birthday : </td><td> <%= details.get(4); %>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
-                    <tr>
-                        <td align="right"><label>Favorite games :</label></td>
-                        <td><input type="text" placeholder="games" id="favorite"></td>
-                    </tr>
-                </table><br>
-                <input type="submit" id="submit" value="Submit">
+                </table>
             </form>
         </div>
     </div>
