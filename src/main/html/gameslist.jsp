@@ -17,7 +17,7 @@
     </button>
     </a><a href="/playerslist.jsp">
     <button type="button">
-        To Players list
+        Players
     </button>
     </a>
 </div>
