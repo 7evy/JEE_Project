@@ -74,6 +74,7 @@ private String argUrl = "";
             argUrl = argUrl.concat("birth=1");
             System.out.println("There is a pb with the date. You must be over 13 to register.");
         }
+        
         //Checking if the passwords are the same pwd
         if (!this.checkPassword(pwd1, pwd2)){
             //TODO
@@ -87,6 +88,7 @@ private String argUrl = "";
             argUrl = argUrl.concat("+email=1");
             System.out.println("Email already used.");
         }
+
         //Checking is the nickname is already taken
         if (!this.checkNickname(nickname)){
             //TODO
@@ -105,14 +107,27 @@ private String argUrl = "";
     }
 
     public boolean checkNickname(String pseudo) {
+        if (pseudo.equals("")){
+            return false;
+        }
         return !SQL.pseudoAlreadyUsed(pseudo);
     }
 
     public boolean checkPassword(String pwd1, String pwd2) {
-        return pwd1.equals(pwd2);
+        if (pwd1.equals("") || pwd2.equals("")){
+            return false;
+        }
+
+        if (pwd1.equals(pwd2)){
+            return true;
+        }
+        return false;
     }
 
     public boolean checkEMail(String email) {
+        if (email.equals("")){
+            return false;
+        }
         return !SQL.mailAlreadyUsed(email);
     }
 
