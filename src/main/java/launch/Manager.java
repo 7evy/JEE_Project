@@ -134,4 +134,27 @@ public class Manager{
         userInfos = userInfos + new SDate(array.get(4)).printDay();
         return userInfos;
     }
+
+    /**
+     * Makes the players list with their pseudo, registration date and nb of sessions
+     * @return the players list as a String
+     * @author Sébastien HERT
+     */
+    public static String makePlayersList()
+    {
+        ArrayList<ArrayList<?>> playersList = SQL.playerList();
+        String players = "";
+
+        if (playersList!=null){
+            for (int i = 0; i<playersList.size() ; i++){
+                if (playersList.get(i) != null){
+                    players = players.concat((String) playersList.get(i).get(0)+"|");
+                    players = players.concat((String) playersList.get(i).get(1)+"|");
+                    players = players.concat((String) playersList.get(i).get(3)+";");
+                }
+            }
+        }
+        
+        return players;
+    }
 }
