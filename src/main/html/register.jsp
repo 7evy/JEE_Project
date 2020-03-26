@@ -10,7 +10,7 @@
 <a href="/">
 <button class="favorite styled"
         type="button">
-    back to login
+    Go Back
 </button>
 </a>
 <body>
