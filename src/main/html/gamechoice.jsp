@@ -4,13 +4,13 @@
 <%@ page import="java.util.Arrays" %>
 <html lang="en">
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="table.css" />
+<link rel="stylesheet" type="text/css" href="tab.css" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body onload="onload">
+<body>
     <div id="boxdiv" style="width: 65%">
     <br><br><br>
     <h1 align="center">Choose a game</h1>
@@ -21,8 +21,8 @@
            List<String> games = Arrays.asList(data.split(";")); %>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
-                <th width="50%">Game</th>
-                <th width="50%">Number of players</th>
+                <th width="70%">Game</th>
+                <th width="30%">Number of players</th>
             </tr>
             <% for (int i=0 ; i<games.size() ; i+=2) { %>
                 <tr id="clickable" onclick="document.location='/playing.jsp'">
