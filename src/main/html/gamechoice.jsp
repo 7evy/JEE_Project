@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Arrays" %>
+<%@ page import="launch.Manager" %>
+<%@ page import="user.User" %>
 <html lang="en">
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="tab.css" />
@@ -16,6 +18,13 @@
 </button>
 </a>
 <body>
+
+    <% User user = Manager.getCurrentUser();
+        if (user == null)
+            response.sendRedirect("/index.jsp?cred=1");
+        else if (user.getStatus() == 2)
+            response.sendRedirect("/index.jsp?cred=2"); %>
+
     <div id="boxdiv" style="width: 65%">
     <br><br><br>
     <h1 align="center">Choose a game</h1>
