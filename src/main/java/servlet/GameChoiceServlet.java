@@ -65,7 +65,6 @@ public class GameChoiceServlet extends HttpServlet {
         String pageName = "/playing.jsp";
         try {
             String game = request.getParameter("game");
-            System.out.println(request.getParameter("game"));
             SQL.addUserToGame(game);
             response.sendRedirect(pageName + "?name=" + game);
         } catch (IOException e) {

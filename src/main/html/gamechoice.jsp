@@ -39,8 +39,8 @@
                 <th width="30%">Number of players</th>
             </tr>
             <% for (int i=0 ; i<games.size() ; i+=2) { %>
-                <tr id="clickable" onclick="document.getElementById('form1').submit()">
-                    <form id="form1" action="/gamechoice" method="post">
+                <tr id="clickable" onclick="document.getElementById('form<%=i/2%>').submit()">
+                    <form id="form<%=i/2%>" action="/gamechoice" method="post">
                         <input type="hidden" name="game" value="<%=games.get(i)%>">
                     </form>
                     <td> <%= games.get(i) %> </td>

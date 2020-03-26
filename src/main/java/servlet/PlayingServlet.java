@@ -39,19 +39,7 @@ public class PlayingServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String game = request.getParameter("name");
-        System.out.println(request.getParameter("name"));
-        System.out.println(request.getParameter("start"));
-        System.out.println(request.getParameter("end"));
-        if (request.getParameter("end").equals("1"))
-        {
-            System.out.println("yolo");
-            SQL.removeUserFromGame(game);
-            response.sendRedirect("/gamechoice");
-        }
-        else if (request.getParameter("start").equals("1"))
-        {
-            System.out.println("oloy");
-            SQL.addUserToGame(game);
-        }
+        SQL.removeUserFromGame(game);
+        response.sendRedirect("/gamechoice");
     }
 }
