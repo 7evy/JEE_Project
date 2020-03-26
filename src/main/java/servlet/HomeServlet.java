@@ -70,9 +70,7 @@ public class HomeServlet extends HttpServlet {
             switch (user.getStatus()) {
                 //Admin
                 case 0:
-                    //TODO
-                    // response.sendRedirect("/gamelist");
-                    response.sendRedirect("/gamechoice");
+                    response.sendRedirect("/gameslist");
                     break;
                 //Player
                 case 1:
