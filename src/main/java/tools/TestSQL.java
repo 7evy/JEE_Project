@@ -25,6 +25,7 @@ public class TestSQL{
         SQL.promoteAdmin("admin");
         mdp = Hasher.hashing("lol");
         SQL.newUser("Trololo", mdp, "trolldu93@yahoo.fr", "2020/03/22 - 16:30:00", "2005/06/24 - 00:00:00");
+        SQL.ban("Trololo");
         mdp = Hasher.hashing("azerty1234");
         SQL.newUser("ProGamer", mdp, "pgm@free.fr", "2020/08/22 - 16:30:00", "1998/04/21 - 00:00:00");
         mdp = Hasher.hashing("ceciestunmotdepasse");
