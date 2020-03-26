@@ -23,8 +23,10 @@
         <%
             if (request.getParameter("cred") == null) {
                 //default page
-            } else { %>
+            } else if (request.getParameter("cred").equals("1")) { %>
                 Wrong credentials<br><br><br>
+            <% } else if (request.getParameter("cred").equals("2")) { %>
+                Sorry. You have been banned. Acces denied<br><br><br>
             <% }
         %>
         <a href="/register">Create a new account</a>

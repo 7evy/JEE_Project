@@ -235,7 +235,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "UPDATE User SET status = 3 WHERE pseudo = ?;";
+            String request = "UPDATE User SET status = 2 WHERE pseudo = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setString(1, pseudo);
             statement.executeUpdate();

@@ -78,10 +78,9 @@ public class HomeServlet extends HttpServlet {
                 case 1:
                     response.sendRedirect("/gamechoice");
                     break;
-                //Suspended or Banned
+                //Banned
                 case 2:
-                case 3:
-                    //TODO
+                    response.sendRedirect("/index.jsp?cred=2");
                     break;
                 default:
                     break;
