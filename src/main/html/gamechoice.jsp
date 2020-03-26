@@ -10,6 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<a href="/">
+<button class="favorite styled"
+        type="button">
+    Disconnect
+</button>
+</a>
 <body>
     <div id="boxdiv" style="width: 65%">
     <br><br><br>

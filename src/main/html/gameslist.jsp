@@ -10,7 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<div>
+    <a href="/">
+    <button class=""
+            type="button">
+        Disconnect
+    </button>
+    </a><a href="/playerslist.jsp">
+    <button class=""
+            type="button">
+        To Players list
+    </button>
+    </a>
+</div>
 <body>
     <div id="boxdiv" style="width: 35%; text-align: center;">
         <br><br><br>

@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+<a href="/">
+<button class="favorite styled"
+        type="button">
+    back to login
+</button>
+</a>
 <body>
     <div id="boxdiv" style="width: 40%">
     <h1 align="center">
