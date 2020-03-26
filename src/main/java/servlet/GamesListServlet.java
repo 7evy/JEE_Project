@@ -53,25 +53,20 @@ public class GamesListServlet extends HttpServlet {
      * @author Thomas LEPERCQ
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int numberOfGames = Manager.getGamesListLength();
-        String pageName = "/gameslist.jsp";
+        int numberOfGames = SQL.allGames().size();
         String increment = "";
         String checkboxName = request.getParameter("checkbox");
         String isDelete = request.getParameter("addelete");
         int checkboxNumber = Integer.parseInt(checkboxName);
-        checkboxNumber = checkboxNumber/2;
         checkboxName = ""+checkboxNumber;
-        System.out.println("check = "+checkboxName);
         for(int i=0; i<numberOfGames; i++){
             increment = ""+i;
-            System.out.println("increment = "+increment);
             if(checkboxName.equals(increment)){
                 if(isDelete.equals("delete")){
                     String data = Manager.makeGamesList();
                     List<String> games = Arrays.asList(data.split(";"));
                     String game = games.get(i);
                     SQL.deleteGame(game);
-                    response.sendRedirect(pageName + "?data=" + data);
                 }
             }
         }

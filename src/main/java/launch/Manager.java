@@ -105,16 +105,4 @@ public class Manager{
         }
         return listToString(all);
     }
-
-    /**
-     * Returns number of games in the database.
-     * @return 
-     * @author Thomas LEPERCQ
-     */
-    public static int getGamesListLength()
-    {
-        ArrayList<String> favs = SQL.gameList(getCurrentUser().getPseudo());
-        int len = favs.size();
-        return len;
-    }
 }
