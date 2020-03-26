@@ -40,7 +40,8 @@ public class GamesListServlet extends HttpServlet {
             throws IOException {
         String pageName = "/gameslist.jsp";
         User user = Manager.getCurrentUser();
-        if (user == null || !Manager.connectionCheck(user.getPseudo(), user.getPwd()))
+        // Prevents access if you are not an administrator
+        if (user == null)
             response.sendRedirect("/index.jsp?cred=1");
         else if (user.getStatus() == 1)
             response.sendRedirect("/index.jsp?cred=1");

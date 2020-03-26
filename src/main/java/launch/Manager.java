@@ -134,21 +134,4 @@ public class Manager{
         userInfos = userInfos + new SDate(array.get(4)).printDay();
         return userInfos;
     }
-
-    /**
-     * Gets the login and the password
-     * Checks if the user is registered and then compares passwords
-     * @param nickname
-     * @param password
-     * @author Thomas LEPERCQ
-     */
-    public static boolean connectionCheck(String nickname, String pwd){
-        boolean res = false;
-        if(nickname == null || pwd == null || nickname.equals("") || pwd.equals("")){
-            res = false;
-        }else if(pwd.equals(SQL.getPsw(nickname))){
-            res = true;
-        }
-        return res; 
-    }
 }
