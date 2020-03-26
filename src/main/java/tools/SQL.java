@@ -668,7 +668,7 @@ public class SQL {
             while(res.next()){
                 ArrayList<Object> game = new ArrayList<Object>();
                 game.add(res.getString(1));
-                game.add(res.getInt(2));
+                game.add(res.getString(2));
                 array.add(game);
             }
         } catch (Exception e) {

@@ -26,10 +26,11 @@ public class GameChoiceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Displays the page
+     * Displays the page with the list of the games.
      * @param request
      * @param response
      * @author Sébastien HERT
+     * @author Dejan PARIS
      */
     // TODO
     @Override
