@@ -28,6 +28,11 @@
                         <th width="50%">Game</th>
                         <th width="50%">Number of players</th>
                     </tr>
+                    <tr>
+                        <th width="50%"><input type="text" name="newgame"></th>
+                        <th width="50%"></th>
+                        <th></th>
+                    </tr>
                     <% for (int i=0 ; i<games.size() ; i+=2){ %>
                     <tr>
                         <td> <% out.println(games.get(i)); %> </td>
