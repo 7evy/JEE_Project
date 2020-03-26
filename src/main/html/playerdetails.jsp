@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import=java.util.List %>
-<%@ page import=java.util.Arrays %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="form.css" />
 
@@ -22,31 +22,31 @@
                 <% List<String> details = Arrays.asList(data.split(";")); %>
                 <table>
                     <tr>
-                        <td> Nickname : </td><td> <%= details.get(0); %>
+                        <td> Nickname : </td><td> <%= details.get(0) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Email address : </td><td> <%= details.get(1); %>
+                        <td> Email address : </td><td> <%= details.get(1) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Currently playing : </td><td> <%= details.get(2); %>
+                        <td> Currently playing : </td><td> <%= details.get(2) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Registration date : </td><td> <%= details.get(3); %>
+                        <td> Registration date : </td><td> <%= details.get(3) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Birthday : </td><td> <%= details.get(4); %>
+                        <td> Birthday : </td><td> <%= details.get(4) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
