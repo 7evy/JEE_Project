@@ -71,7 +71,7 @@ public class User{
      */
     public User(String pseudo){
         this.pseudo = pseudo;
-        this.pwd = null;
+        this.pwd = SQL.getPsw(pseudo);
         this.eMail = null;
         this.status = SQL.getStatus(pseudo);
         this.registration = new SDate();
