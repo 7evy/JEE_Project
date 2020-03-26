@@ -43,7 +43,7 @@
                 attributes = playersAndAtributes.get(i);
            showAtributes = Arrays.asList(attributes.split("!")); 
                  %>
-                <tr id="clickable" onclick="document.location='/playerdetails.jsp?name=<%=showAtributes.get(0)%>'">
+                <tr id="clickable" onclick="document.location='/playerdetails.jsp?data=<%=showAtributes.get(0)%>'">
                     <td> <%= showAtributes.get(0) %> </td>
                     <td> <%= showAtributes.get(1) %> </td>
                     <td> <%= showAtributes.get(2) %> </td>
