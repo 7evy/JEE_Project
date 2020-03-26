@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,16 +20,17 @@ import tools.SQL;
  * 
  * @author Sébastien HERT
  * @author Alex JOBARD
+
  */
 @WebServlet(name = "register", urlPatterns = { "/register" })
 public class RegisterServlet extends HttpServlet {
 
-    private String argUrl = "";
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
+    private ArrayList<String> argUrlList=new ArrayList<String>();
 
     /**
      * Displays the page
@@ -61,6 +63,7 @@ public class RegisterServlet extends HttpServlet {
      * @param response
      * @author Sébastien HERT
      * @author Alex JOBARD
+
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
@@ -70,41 +73,43 @@ public class RegisterServlet extends HttpServlet {
         String birthday = request.getParameter("birthday");
         System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
 
-        // Checking the age
-        if (!this.checkBirthday(birthday)) {
-            // TODO
-            argUrl = argUrl.concat("birth=1");
+        //Checking the age
+        if (!this.checkBirthday(birthday)){
+            //TODO
+            argUrlList.add("birth=1");
             System.out.println("There is a pb with the date. You must be over 13 to register.");
         }
-
-        // Checking if the passwords are the same pwd
-        if (!this.checkPassword(pwd1, pwd2)) {
-            // TODO
-            argUrl = argUrl.concat("+pswd=1");
+        
+        //Checking if the passwords are the same pwd
+        if (!this.checkPassword(pwd1, pwd2)){
+            //TODO
+            argUrlList.add("pswd=1");
             System.out.println("The 2 passwords given are different.");
         }
-
-        // Checking if the address is already used
-        if (!this.checkEMail(email)) {
-            // TODO
-            argUrl = argUrl.concat("+email=1");
+                
+        //Checking if the address is already used
+        if (!this.checkEMail(email)){
+            //TODO
+            argUrlList.add("email=1");
             System.out.println("Email already used.");
         }
 
-        // Checking is the nickname is already taken
-        if (!this.checkNickname(nickname)) {
-            // TODO
-            argUrl = argUrl.concat("+nickname=1");
+        //Checking is the nickname is already taken
+        if (!this.checkNickname(nickname)){
+            //TODO
+            argUrlList.add("nickname=1");
             System.out.println("The nickname is already taken");
         }
 
-        if (argUrl == "") {
-            response.sendRedirect("/gamechoice");
-        } else {
-            String s = "/playerdetails.jsp?";
+
+       /* if(argUrl == ""){
+         response.sendRedirect("/gamechoice");
+        }
+        else{
+            String s = "/register.jsp?";
             s = s.concat(argUrl);
             response.sendRedirect(s);
-        }
+        }*/
     }
 
     /**
@@ -115,7 +120,7 @@ public class RegisterServlet extends HttpServlet {
      * @author Sébastien HERT
      */
     public boolean checkNickname(String pseudo) {
-        if (pseudo.equals("")) {
+        if (pseudo.equals("")){
             return false;
         }
         return !SQL.pseudoAlreadyUsed(pseudo);
@@ -130,11 +135,11 @@ public class RegisterServlet extends HttpServlet {
      * @author Sébastien HERT
      */
     public boolean checkPassword(String pwd1, String pwd2) {
-        if (pwd1.equals("") || pwd2.equals("")) {
+        if (pwd1.equals("") || pwd2.equals("")){
             return false;
         }
 
-        if (pwd1.equals(pwd2)) {
+        if (pwd1.equals(pwd2)){
             return true;
         }
         return false;
@@ -148,7 +153,7 @@ public class RegisterServlet extends HttpServlet {
      * @author Sébastien HERT
      */
     public boolean checkEMail(String email) {
-        if (email.equals("")) {
+        if (email.equals("")){
             return false;
         }
         return !SQL.mailAlreadyUsed(email);
