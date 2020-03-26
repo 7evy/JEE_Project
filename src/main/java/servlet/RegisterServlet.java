@@ -18,11 +18,12 @@ import tools.SQL;
  * Describes the servlet used on the register page
  * 
  * @author Sébastien HERT
+ * @author Alex JOBARD
  */
 @WebServlet(name = "register", urlPatterns = { "/register" })
 public class RegisterServlet extends HttpServlet {
 
-private String argUrl = "";
+    private String argUrl = "";
 
     /**
      *
@@ -59,6 +60,7 @@ private String argUrl = "";
      * @param request
      * @param response
      * @author Sébastien HERT
+     * @author Alex JOBARD
      */
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
@@ -68,69 +70,97 @@ private String argUrl = "";
         String birthday = request.getParameter("birthday");
         System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
 
-        //Checking the age
-        if (!this.checkBirthday(birthday)){
-            //TODO
+        // Checking the age
+        if (!this.checkBirthday(birthday)) {
+            // TODO
             argUrl = argUrl.concat("birth=1");
             System.out.println("There is a pb with the date. You must be over 13 to register.");
         }
-        
-        //Checking if the passwords are the same pwd
-        if (!this.checkPassword(pwd1, pwd2)){
-            //TODO
+
+        // Checking if the passwords are the same pwd
+        if (!this.checkPassword(pwd1, pwd2)) {
+            // TODO
             argUrl = argUrl.concat("+pswd=1");
             System.out.println("The 2 passwords given are different.");
         }
-                
-        //Checking if the address is already used
-        if (!this.checkEMail(email)){
-            //TODO
+
+        // Checking if the address is already used
+        if (!this.checkEMail(email)) {
+            // TODO
             argUrl = argUrl.concat("+email=1");
             System.out.println("Email already used.");
         }
 
-        //Checking is the nickname is already taken
-        if (!this.checkNickname(nickname)){
-            //TODO
+        // Checking is the nickname is already taken
+        if (!this.checkNickname(nickname)) {
+            // TODO
             argUrl = argUrl.concat("+nickname=1");
             System.out.println("The nickname is already taken");
         }
 
-        if(argUrl == ""){
-         response.sendRedirect("/gamechoice");
-        }
-        else{
+        if (argUrl == "") {
+            response.sendRedirect("/gamechoice");
+        } else {
             String s = "/playerdetails.jsp?";
             s = s.concat(argUrl);
             response.sendRedirect(s);
         }
     }
 
+    /**
+     * Checks if the nickname is already used or null
+     * 
+     * @param pseudo the pseudo
+     * @return a boolean
+     * @author Sébastien HERT
+     */
     public boolean checkNickname(String pseudo) {
-        if (pseudo.equals("")){
+        if (pseudo.equals("")) {
             return false;
         }
         return !SQL.pseudoAlreadyUsed(pseudo);
     }
 
+    /**
+     * Checks if the passwords are different or null
+     * 
+     * @param pwd1 the first password
+     * @param pwd2 the second password
+     * @return a boolean
+     * @author Sébastien HERT
+     */
     public boolean checkPassword(String pwd1, String pwd2) {
-        if (pwd1.equals("") || pwd2.equals("")){
+        if (pwd1.equals("") || pwd2.equals("")) {
             return false;
         }
 
-        if (pwd1.equals(pwd2)){
+        if (pwd1.equals(pwd2)) {
             return true;
         }
         return false;
     }
 
+    /**
+     * Checks if the mail is already used or null
+     * 
+     * @param email the Email address
+     * @return a boolean
+     * @author Sébastien HERT
+     */
     public boolean checkEMail(String email) {
-        if (email.equals("")){
+        if (email.equals("")) {
             return false;
         }
         return !SQL.mailAlreadyUsed(email);
     }
 
+    /**
+     * Checks if the birth Day is valid or not
+     * 
+     * @param birthday the birth Day
+     * @return a boolean
+     * @author Sébastien HERT
+     */
     public boolean checkBirthday(String birthday) {
         try {
             int year = Integer.parseInt(birthday.split("-")[0]);
