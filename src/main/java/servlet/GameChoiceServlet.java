@@ -43,11 +43,10 @@ public class GameChoiceServlet extends HttpServlet {
             data.add("default");
             data.add("default");
             data.add("default");
-            request.setAttribute("data", Manager.listToString(data));
-            rd.forward(request, response);
-        } catch (ServletException e) {
-            System.out.println("Error : ServletException");
-            e.printStackTrace();
+            response.sendRedirect("/gamechoice.jsp?data=" + Manager.listToString(data));
+        //} catch (ServletException e) {
+           // System.out.println("Error : ServletException");
+           // e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();

@@ -16,8 +16,8 @@
     <br>
     <div align="center">
     <form action="/gamechoice" method="get">
-        <!-- <% String[] str = request.getParameter("data").split(";");
-           List<String> games = Arrays.asList(str);%>
+        <% String str = request.getParameter("data");
+           List<String> games = Arrays.asList(str.split(";"));%>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="50%">Game</th>
@@ -26,7 +26,7 @@
             <tr>
                 <td> <% games.get(0); %> </td>
             </tr>
-        </table>  -->
+        </table>
     </form>
     </div></div>
 </body>
