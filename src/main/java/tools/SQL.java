@@ -749,4 +749,34 @@ public class SQL {
         deleteAllUsualGames(game);
         removeGame(game);
     }
+
+    /**
+     * Returns all the informations about a player
+     * 
+     * @author Adam RIVIERE
+     * @return the pseudo, the email, the current game, the registration date and the birth date of the player.
+     */
+    public static ArrayList<String> playerInfo(String pseudo){
+        ArrayList<String> array = new ArrayList<String>();
+        int idUser = getUserId(pseudo);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT User.pseudo,User.email,Game.name,User.registration,User.birthDate FROM User JOIN Game ON User.currentGame = Game.idGame WHERE idUser = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, idUser);
+            res = statement.executeQuery(); 
+            while(res.next()){
+                array.add(res.getString(1));
+                array.add(res.getString(2));
+                array.add(res.getString(3));
+                array.add(res.getString(4));
+                array.add(res.getString(5));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return array;
+    }
 }
