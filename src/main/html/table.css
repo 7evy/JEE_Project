@@ -52,7 +52,7 @@ h1{
   width: 17%;
 }
 
-.clickable {
+#clickable {
   cursor: pointer;
 }
 

@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script language="Javascript">
+    <!-- <script language="Javascript">
         var elements = document.getElementsByClassName("clickable");
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
@@ -17,7 +17,7 @@
                 if (href) {
                     window.location.assign(href);
                 } }); } 
-    </script>
+    </script> -->
 </head>
 <body onload="onload">
     <div id="boxdiv" style="width: 65%">
@@ -34,7 +34,7 @@
                 <th width="50%">Number of players</th>
             </tr>
             <% for (int i=0 ; i<games.size() ; i+=2) { %>
-                <tr class="clickable" href="/playing.jsp?name=<% out.print(games.get(i)); %>">
+                <tr id="clickable" onclick="document.location='/playing.jsp'">
                     <td> <% out.println(games.get(i)); %> </td>
                     <td> <% out.println(games.get(i+1)); %> </td>
                 </tr>
