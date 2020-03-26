@@ -39,7 +39,10 @@
                 <th width="30%">Number of players</th>
             </tr>
             <% for (int i=0 ; i<games.size() ; i+=2) { %>
-                <tr id="clickable" onclick="document.location='/playing.jsp?name=<%=games.get(i)%>'">
+                <tr id="clickable" onclick="document.getElementById('form1').submit()">
+                    <form id="form1" action="/gamechoice" method="post">
+                        <input type="hidden" name="game" value="<%=games.get(i)%>">
+                    </form>
                     <td> <%= games.get(i) %> </td>
                     <td> <%= games.get(i+1) %> </td>
                 </tr>

@@ -415,12 +415,12 @@ public class SQL {
     }
 
     /**
-     * Removes a user to a game
+     * Removes a user from a game
      * 
      * @author Adam RIVIERE
      * @param game name of the game
      */
-    public static void removeUserToGame(String game) {
+    public static void removeUserFromGame(String game) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -538,7 +538,7 @@ public class SQL {
      * @param pseudo pseudo of the player
      */
     public static void deleteSession(String game, String pseudo){
-        removeUserToGame(game);
+        removeUserFromGame(game);
         removeSession(game, pseudo);
         currentGame("None", pseudo);
     }

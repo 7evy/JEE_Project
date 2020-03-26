@@ -4,6 +4,7 @@ import java.io.IOException;
 // import java.util.ArrayList;
 // import tools.SQL;
 import launch.Manager;
+import tools.SQL;
 
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
@@ -44,6 +45,29 @@ public class GameChoiceServlet extends HttpServlet {
             //data.add("Fortnite"); data.add("0");                // Temporary
             //data.add("Dragon Quest"); data.add("3");            // Temporary
             response.sendRedirect(pageName + "?data=" + games);
+        } catch (IOException e) {
+            System.out.println("Error : IOException");
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Displays the page with the list of the games.
+     * @param request
+     * @param response
+     * @author Sébastien HERT
+     * @author Dejan PARIS
+     */
+    // TODO
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String pageName = "/playing.jsp";
+        try {
+            String game = request.getParameter("game");
+            System.out.println(request.getParameter("game"));
+            SQL.addUserToGame(game);
+            response.sendRedirect(pageName + "?name=" + game);
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();
