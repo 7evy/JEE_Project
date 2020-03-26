@@ -58,9 +58,13 @@ public class GamesListServlet extends HttpServlet {
         String increment = "";
         String checkboxName = request.getParameter("checkbox");
         String isDelete = request.getParameter("addelete");
-        System.out.println(isDelete + " test " + checkboxName);
+        int checkboxNumber = Integer.parseInt(checkboxName);
+        checkboxNumber = checkboxNumber/2;
+        checkboxName = ""+checkboxNumber;
+        System.out.println("check = "+checkboxName);
         for(int i=0; i<numberOfGames; i++){
             increment = ""+i;
+            System.out.println("increment = "+increment);
             if(checkboxName.equals(increment)){
                 if(isDelete.equals("delete")){
                     String data = Manager.makeGamesList();
