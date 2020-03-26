@@ -1,7 +1,6 @@
 package servlet;
 
 import tools.SQL;
-import user.User;
 
 import java.io.IOException;
 import launch.Manager;

@@ -1,6 +1,8 @@
 <!--No servlet-->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="launch.Manager" %>
+<%@ page import="user.User" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="form.css" />
 <head>
@@ -9,6 +11,13 @@
     <title>Playing</title>
 </head>
 <body>
+
+    <% User user = Manager.getCurrentUser();
+        if (user == null)
+            response.sendRedirect("/index.jsp?cred=1");
+        else if (user.getStatus() == 2)
+            response.sendRedirect("/index.jsp?cred=2"); %>
+
 <h1> Currently playing : <% out.println(request.getParameter("name")); %></h1>
 </body>
 </html>
