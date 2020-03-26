@@ -1,9 +1,7 @@
 package servlet;
 
-import tools.Hasher;
 import tools.SQL;
 import user.User;
-import servlet.HomeServlet;
 
 import java.io.IOException;
 import launch.Manager;
@@ -17,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 /**
  * Describes the servlet used on the gameslist page
@@ -35,15 +32,15 @@ public class GamesListServlet extends HttpServlet {
      * Displays the page
      * @param request
      * @param response
-     * @author Sébastien HERT
      * @author Thomas LEPERCQ
+     * @author Dejan PARIS
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String pageName = "/gameslist.jsp";
         User user = Manager.getCurrentUser();
-        if (user == null || !new HomeServlet().connectionCheck(user.getPseudo(), user.getPwd()))
+        if (user == null || !Manager.connectionCheck(user.getPseudo(), user.getPwd()))
             response.sendRedirect("/index.jsp?cred=1");
         else if (user.getStatus() == 1)
             response.sendRedirect("/index.jsp?cred=1");
