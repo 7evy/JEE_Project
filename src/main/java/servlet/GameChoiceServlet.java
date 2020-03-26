@@ -34,19 +34,15 @@ public class GameChoiceServlet extends HttpServlet {
     // TODO
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
         String pageName = "/gamechoice.jsp";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(pageName);
         try {
             // String data = Manager.listToString(SQL.gameList(Manager.getCurrentUser().getPseudo()));
-            ArrayList<String> data = new ArrayList<String>();
-            data.add("default");
-            data.add("default");
-            data.add("default");
-            response.sendRedirect("/gamechoice.jsp?data=" + Manager.listToString(data));
-        //} catch (ServletException e) {
-           // System.out.println("Error : ServletException");
-           // e.printStackTrace();
+            ArrayList<String> data = new ArrayList<String>();   // Temporary
+            data.add("Minecraft"); data.add("1");               // Temporary
+            data.add("Fortnite"); data.add("0");                // Temporary
+            data.add("Dragon Quest"); data.add("3");            // Temporary
+            response.sendRedirect(pageName + "?data=" + Manager.listToString(data));
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();

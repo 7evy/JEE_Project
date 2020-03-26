@@ -16,16 +16,19 @@
     <br>
     <div align="center">
     <form action="/gamechoice" method="get">
-        <% String str = request.getParameter("data");
-           List<String> games = Arrays.asList(str.split(";"));%>
+        <% String data = request.getParameter("data");
+           List<String> games = Arrays.asList(data.split(";"));%>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="50%">Game</th>
                 <th width="50%">Number of players</th>
             </tr>
-            <tr>
-                <td> <% games.get(0); %> </td>
-            </tr>
+            <% for (int i=0 ; i<games.size() ; i+=2)
+            { %> <tr>
+                    <td> <% out.println(games.get(i)); %> </td>
+                    <td> <% out.println(games.get(i+1)); %> </td>
+                 </tr>
+            <% } %>
         </table>
     </form>
     </div></div>
