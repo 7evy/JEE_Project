@@ -650,4 +650,31 @@ public class SQL {
         }
         return status;
     }
+
+    /**
+     * Returns a list of all the games associated with the number of players who are playing
+     * 
+     * @author Adam RIVIERE
+     * @return the list of all games
+     */
+    public static ArrayList<ArrayList<?>> allGames(){
+        ArrayList<ArrayList<?>> array = new ArrayList<ArrayList<?>>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT name,nbPlayers FROM Game;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery(); 
+            while(res.next()){
+                ArrayList<Object> game = new ArrayList<Object>();
+                game.add(res.getString(1));
+                game.add(res.getInt(2));
+                array.add(game);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return array;
+    }
 }

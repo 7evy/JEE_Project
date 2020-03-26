@@ -11,6 +11,12 @@ public class TestSQL{
         SQL.newGame("Fortnite");
         SQL.newGame("Zelda");
         SQL.newGame("LOTRO");
+        SQL.newGame("Minecraft");
+        SQL.newGame("SWTOR");
+        SQL.newGame("Oblivion");
+        SQL.newGame("Total War Warhammer");
+        SQL.newGame("Spellcaster University");
+        SQL.newGame("name");
         String mdp = Hasher.hashing("tressecurise");
         SQL.newUser("Noobdu22", mdp, "noob@gmail.com", "2020/03/22 - 16:30:00", "2000/01/01");
         mdp = Hasher.hashing("admin");
