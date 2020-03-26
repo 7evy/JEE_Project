@@ -247,12 +247,12 @@ public class SQL {
     }
 
     /**
-     * Debans a user
+     * Unbans a user
      * 
      * @author Adam RIVIERE
      * @param pseudo pseudo of the user
      */
-    public static void deban(String pseudo) {
+    public static void unban(String pseudo) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -404,7 +404,7 @@ public class SQL {
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             int nb = nbPlayers(game);
-            statement.setInt(1, nb);
+            statement.setInt(1, nb+1);
             statement.setString(2, game);
             statement.executeUpdate();
         } catch (Exception e) {
@@ -427,6 +427,7 @@ public class SQL {
             String request = "UPDATE Game SET nbPlayers = ? WHERE name = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             int nb = nbPlayers(game);
+            if (nb > 0) nb -= 1;
             statement.setInt(1, nb);
             statement.setString(2, game);
             statement.executeUpdate();
@@ -450,7 +451,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT COUNT(*) FROM Game WHERE idGame = ?;";
+            String request = "SELECT COUNT(*) FROM Session WHERE idGame = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, gameId);
             res = statement.executeQuery();
@@ -544,7 +545,7 @@ public class SQL {
     }
 
     /**
-     * Verifies if the pseudo is already used
+     * Checks if the pseudo is already used
      * 
      * @author Adam RIVIERE
      * @param pseudo pseudo of the new user
@@ -571,7 +572,7 @@ public class SQL {
     }
 
     /**
-     * Verifies if an email is already used
+     * Checks if an email is already used
      * 
      * @author Adam RIVIERE
      * @param email new emaail to test
@@ -751,7 +752,7 @@ public class SQL {
     }
 
     /**
-     * Returns all the informations about a player
+     * Returns all information about a player
      * 
      * @author Adam RIVIERE
      * @return the pseudo, the email, the current game, the registration date and the birth date of the player.
