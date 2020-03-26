@@ -682,7 +682,7 @@ public class SQL {
      * @author Adam RIVIERE
      * @param game name of the game
      */
-    public static void deleteGame(String game) {
+    public static void removeGame(String game) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -695,5 +695,58 @@ public class SQL {
             e.printStackTrace();
             System.out.println("Jeu non existant ! !");
         }
+    }
+
+    /**
+     * Deletes all sessions of a game
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     */
+    public static void deleteAllSessions(String game) {
+        try {
+            int idGame = getGameId(game);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT pseudo FROM User JOIN Session ON User.idUser = Session.idUser WHERE idGame = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, idGame);
+            statement.executeQuery();
+            while(res.next()){
+                deleteSession(game, res.getString(1));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("Jeu non existant ! !");
+        }
+    }
+
+    /**
+     * Deletes a game from all preferences
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     */
+    public static void deleteAllUsualGames(String game) {
+        try {
+            int idGame = getGameId(game);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "DELETE FROM UsualGames WHERE idGame = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, idGame);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("Jeu non existant ! !");
+        }
+    }
+
+    public static void deleteGame(String game){
+        deleteAllSessions(game);
+        deleteAllUsualGames(game);
+        removeGame(game);
     }
 }

@@ -3,21 +3,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Arrays" %>
 <html lang="en">
+<!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="table.css" />
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script language="Javascript">
-        var elements = document.getElementsByClassName("clickable");
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
-            element.addEventListener("click", function() {
-                var href = this.dataset.href;
-                if (href) {
-                    window.location.assign(href);
-                } }); } 
-    </script> -->
 </head>
 <body onload="onload">
     <div id="boxdiv" style="width: 65%">
