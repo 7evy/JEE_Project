@@ -16,8 +16,8 @@
         <br><br><br>
         <h1 align="center">Game list</h1>
         <br>
-        <button id="addelete">Add</button>
-        <button id="addelete">Delete</button>
+        <button id="addelete" name="addelete" value="add">Add</button>
+        <button id="addelete" name="addelete" value="delete">Delete</button>
         <br><br>
         <div align="center">
             <form action="/gameslist" method="get"></form>
@@ -32,7 +32,7 @@
                     <tr>
                         <td> <% out.println(games.get(i)); %> </td>
                         <td> <% out.println(games.get(i+1)); %> </td>
-                        <td> <input type="checkbox" id=<% games.get(i); %> name="selection"> </td>
+                        <td> <input type="checkbox" name="checkbox" value=<% out.println(i); %>> </td>
                     </tr>
                     <% } %>
                 </table>

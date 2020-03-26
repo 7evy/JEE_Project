@@ -1,9 +1,10 @@
 package servlet;
 
+import tools.SQL;
 import java.io.IOException;
-import java.util.ArrayList;
-// import tools.SQL;
 import launch.Manager;
+import java.util.List;
+import java.util.Arrays;
 
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
@@ -37,15 +38,38 @@ public class GamesListServlet extends HttpServlet {
             throws IOException {
         String pageName = "/gameslist.jsp";
         try {
-            // String data = Manager.listToString(SQL.gameList(Manager.getCurrentUser().getPseudo()));
-            ArrayList<String> data = new ArrayList<String>();   // Temporary
-            data.add("Minecraft"); data.add("1");               // Temporary
-            data.add("Fortnite"); data.add("0");                // Temporary
-            data.add("Dragon Quest"); data.add("3");            // Temporary
-            response.sendRedirect(pageName + "?data=" + Manager.listToString(data));
+            String games = Manager.makeGamesList();
+            response.sendRedirect(pageName + "?data=" + games);
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Gets checkbox value to add or remove selected game.
+     * @param request
+     * @param response
+     * @author Thomas LEPERCQ
+     */
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int numberOfGames = Manager.getGamesListLength();
+        String pageName = "/gameslist.jsp";
+        String increment = "";
+        String checkboxName = request.getParameter("checkbox");
+        String isDelete = request.getParameter("addelete");
+        System.out.println(isDelete + "   " + checkboxName);
+        for(int i=0; i<numberOfGames; i++){
+            increment = ""+i;
+            if(checkboxName.equals(increment)){
+                if(isDelete.equals("delete")){
+                    String data = Manager.makeGamesList();
+                    List<String> games = Arrays.asList(data.split(";"));
+                    String game = games.get(i);
+                    SQL.deleteGame(game);
+                    response.sendRedirect(pageName + "?data=" + data);
+                }
+            }
         }
     }
 }
