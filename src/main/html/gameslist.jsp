@@ -16,7 +16,7 @@
         <br><br><br>
         <h1 align="center">Game list</h1>
         <br>
-        <form action="/gameslist" method="post"></form>
+        <form action="/gameslist" method="post">
             <button id="addelete" name="addelete" value="add">Add</button>
             <button id="addelete" name="addelete" value="delete">Delete</button>
             <br><br>
