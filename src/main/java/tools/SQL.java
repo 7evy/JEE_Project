@@ -675,4 +675,25 @@ public class SQL {
         }
         return game;
     }
+
+    /**
+     * Deletes a game
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     */
+    public static void deleteGame(String game) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "DELETE FROM Game WHERE name = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setString(1, game);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("Jeu non existant ! !");
+        }
+    }
 }
