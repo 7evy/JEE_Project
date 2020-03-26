@@ -58,7 +58,7 @@ public class GamesListServlet extends HttpServlet {
         String increment = "";
         String checkboxName = request.getParameter("checkbox");
         String isDelete = request.getParameter("addelete");
-        System.out.println(isDelete + "   " + checkboxName);
+        System.out.println(isDelete + " test " + checkboxName);
         for(int i=0; i<numberOfGames; i++){
             increment = ""+i;
             if(checkboxName.equals(increment)){
@@ -71,5 +71,6 @@ public class GamesListServlet extends HttpServlet {
                 }
             }
         }
+        doGet(request, response);
     }
 }
