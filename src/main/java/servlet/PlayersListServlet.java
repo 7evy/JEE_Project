@@ -22,10 +22,7 @@ public class PlayersListServlet extends HttpServlet {
             throws IOException {
                 String pageName = "/playerslist.jsp";
                 try{
-                    System.out.println("avant\n");
                     String allPlayers = Manager.makePlayersList();
-
-                    System.out.println("apres\n");
                     response.sendRedirect(pageName + "?data=" + allPlayers);
                 }
                 catch (IOException e) {

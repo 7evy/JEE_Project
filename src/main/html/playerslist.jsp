@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="launch.Manager" %>
 <%@ page import="user.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
 <html lang="en">
 <link rel="stylesheet" type="text/css" href="tab.css" />
 
@@ -26,16 +28,33 @@
         <h1 align="center">Player list</h1>
         <br>
         <div align="center">
-            <table border="1px solid black">
+                    <form action="/playerslist" method="get">
+        <% String data = request.getParameter("data");
+           List<String> playersAndAtributes = Arrays.asList(data.split(";"));
+           List<String> showAtributes;
+           String attributes = ""; %>
+        <table border="1px solid black">
                 <tr border="1px solid black">
                     <th>Nickname</th>
                     <th>Registration date</th>
                     <th>Sessions played</th>
+               </tr>
+            <% for (int i=0 ; i<playersAndAtributes.size() ; i++) {
+                attributes = playersAndAtributes.get(i);
+           showAtributes = Arrays.asList(attributes.split("!")); 
+                 %>
+                <tr id="clickable" onclick="document.location='/playerdetails.jsp?name=<%=showAtributes.get(0)%>'">
+                    <td> <%= showAtributes.get(0) %> </td>
+                    <td> <%= showAtributes.get(1) %> </td>
+                    <td> <%= showAtributes.get(2) %> </td>
                 </tr>
+            <% } %>
             </table><br><br>
+    </form>
             <button id="ban">Ban</button>
         </div>
     </div>
+
 </body>
 
 </html>
