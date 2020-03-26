@@ -38,12 +38,12 @@ public class GameChoiceServlet extends HttpServlet {
             throws IOException {
         String pageName = "/gamechoice.jsp";
         try {
-            String str = Manager.listToString(SQL.allGames());
-            ArrayList<String> data = new ArrayList<String>();   // Temporary
-            data.add("Minecraft"); data.add("1");               // Temporary
-            data.add("Fortnite"); data.add("0");                // Temporary
-            data.add("Dragon Quest"); data.add("3");            // Temporary
-            response.sendRedirect(pageName + "?data=" + str);
+            String games = Manager.makeGamesList();
+            //ArrayList<String> data = new ArrayList<String>();   // Temporary
+            //data.add("Minecraft"); data.add("1");               // Temporary
+            //data.add("Fortnite"); data.add("0");                // Temporary
+            //data.add("Dragon Quest"); data.add("3");            // Temporary
+            response.sendRedirect(pageName + "?data=" + games);
         } catch (IOException e) {
             System.out.println("Error : IOException");
             e.printStackTrace();
