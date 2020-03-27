@@ -108,6 +108,20 @@ public class Manager{
     }
 
     /**
+     * Creates the list of all active sessions.
+     * @return A String containing all of the sessions : game, player, date of creation, separated by ";".
+     * @author Dejan PARIS
+     */
+    public static String activeSessionsList()
+    {
+        ArrayList<String> all = SQL.allActiveSessions();
+        String s = "";
+        for (int i=0 ; i<all.size() ; i++)
+            s = s + all.get(i) + ";";
+        return s;
+    }
+
+    /**
      * Returns number of games in the database.
      * @return 
      * @author Thomas LEPERCQ
@@ -120,7 +134,7 @@ public class Manager{
     }
 
     /**
-     * Concatains users informations
+     * Concatenates users informations
      * @return the Infos as a String
      * @author Sébastien HERT
      */
@@ -150,11 +164,11 @@ public class Manager{
                 // System.out.println(playersList.size());
                 if (playersList.get(i) != null){
                     // System.out.println(playersList.get(i).get(0));
-                    players = players.concat((String) playersList.get(i).get(0)+"!");
+                    players = players + playersList.get(i).get(0)+"!";
                     // System.out.println(playersList.get(i).get(1));
-                    players = players.concat((String) playersList.get(i).get(1)+"!");
+                    players = players + playersList.get(i).get(1)+"!";
                     // System.out.println(playersList.get(i).get(3));
-                    players = players.concat(Integer.toString((Integer) playersList.get(i).get(3))+";");
+                    players = players + Integer.toString((Integer) playersList.get(i).get(3))+";";
                 }
             }
         }

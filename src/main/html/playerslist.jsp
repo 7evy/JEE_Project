@@ -12,7 +12,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<div>
+    <a href="/">
+    <button type="button">
+        Disconnect
+    </button>
+    </a>
+    <a href="/gameslist">
+    <button type="button" style="float: right;">
+        Games
+    </button>
+    </a>
+    <a href="/onsessions">
+    <button type="button" style="float: right;">
+        Sessions
+    </button>
+    </a>
+</div>
 <body>
 
     <% User user = Manager.getCurrentUser();

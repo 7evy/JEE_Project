@@ -23,11 +23,6 @@
         Players
     </button>
     </a>
-    <a href="/onsessions">
-    <button type="button" style="float: right;">
-        Sessions
-    </button>
-    </a>
 </div>
 <body>
 
@@ -39,31 +34,30 @@
         else if (user.getStatus() == 2)
             response.sendRedirect("/index.jsp?cred=2"); %>
 
-    <div id="boxdiv" style="width: 35%; text-align: center;">
+    <div id="boxdiv" style="width: 70%; text-align: center;">
         <br><br><br>
         <h1 align="center">Game list</h1>
         <br>
-        <form action="/gameslist" method="post">
-            <button id="addelete" name="addelete" value="add">Add</button>
-            <button id="addelete" name="addelete" value="delete">Delete</button>
+        <form action="/onsessions" method="get">
+            <button>Refresh</button>
+        </form>
+        <form action="/onsessions" method="post">
+            <button>Close Session</button>
             <br><br>
             <div align="center">
                 <% String data = request.getParameter("data");
-                List<String> games = Arrays.asList(data.split(";"));%>
+                List<String> sessions = Arrays.asList(data.split(";"));%>
                 <table border="1px solid black">
                     <tr border="1px solid black">
-                        <th width="50%">Game</th>
-                        <th width="50%">Number of players</th>
+                        <th width="30%">Game</th>
+                        <th width="30%">Player</th>
+                        <th width="40%">Started at</th>
                     </tr>
+                    <% for (int i=0 ; i<sessions.size() ; i+=3){ %>
                     <tr>
-                        <th width="50%"><input type="text" name="newgame"></th>
-                        <th width="50%"></th>
-                        <th></th>
-                    </tr>
-                    <% for (int i=0 ; i<games.size() ; i+=2){ %>
-                    <tr>
-                        <td> <%= games.get(i) %> </td>
-                        <td> <%= games.get(i+1) %> </td>
+                        <td> <%= sessions.get(i) %> </td>
+                        <td> <%= sessions.get(i+1) %> </td>
+                        <td> <%= sessions.get(i+2) %> </td>
                         <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
                     </tr>
                     <% } %>

@@ -699,6 +699,31 @@ public class SQL {
     }
 
     /**
+     * Gets all sessions of a game
+     * 
+     * @author Dejan PARIS
+     */
+    public static ArrayList<String> allActiveSessions() {
+        ArrayList<String> sessions = new ArrayList<String>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT Game.name, User.pseudo, Session.startDate FROM User JOIN Session ON User.idUser = Session.idUser JOIN Game ON Session.idGame = Game.idGame WHERE Session.status = 1;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()){
+                sessions.add(res.getString(1));
+                sessions.add(res.getString(2));
+                sessions.add(res.getString(3));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return sessions;
+    }
+
+    /**
      * Deletes all sessions of a game
      * 
      * @author Adam RIVIERE
@@ -712,7 +737,7 @@ public class SQL {
             String request = "SELECT pseudo FROM User JOIN Session ON User.idUser = Session.idUser WHERE idGame = ?;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, idGame);
-            statement.executeQuery();
+            res = statement.executeQuery();
             while(res.next()){
                 deleteSession(game, res.getString(1));
             }
