@@ -53,7 +53,7 @@
                     <%-- Fills the table with data. --%>
                     <% for (int i=0 ; i<data.size() ; i+=2) { %>
                         <%-- The rows of the table are links to the corresponding game. --%>
-                        <tr onclick="document.getElementById('form<%=i/2%>').submit()">
+                        <tr id="clickable" onclick="document.getElementById('form<%=i/2%>').submit()">
                             <%-- One form per game is used to interact with the servlet and redirect the user. --%>
                             <form id="form<%=i/2%>" action="/gamechoice" method="post">
                                 <input type="hidden" name="game" value="<%=data.get(i)%>">
