@@ -44,26 +44,4 @@ public class ArchivedSessionsServlet extends HttpServlet {
             rd.forward(request, response);
         } catch (Exception e) {}
     }
-
-    /**
-     * Gets checkbox value to add or remove selected session.
-     * @param request
-     * @param response
-     * @author Dejan PARIS
-     */
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        try {
-            ArrayList<String> sessions = SQL.allActiveSessions();
-            int nbSessions = sessions.size()/3;
-            for (int i=0; i<nbSessions; i++) {
-                String checkbox = request.getParameter("checkbox" + i);
-                if (checkbox != null) {
-                    SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
-                }
-            }
-            doGet(request, response);
-        } catch (Exception e) {}
-    }
 }
