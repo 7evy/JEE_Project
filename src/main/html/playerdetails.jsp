@@ -14,6 +14,8 @@
 
 <body>
 
+    <%-- The code below prevents any unauthorized user to access the page :
+         banned, non-admin or non-logged in users are sent back to the Connection page. --%>
     <% User user = Manager.getCurrentUser();
         if (user == null || user.getStatus() > 0)
         {
@@ -27,8 +29,13 @@
             Player info
         </h1><br>
         <div align="center">
+
+            <%-- Calls PlayerServlet to obtain the nickname, email address, birthday, registration date and current game of the player. --%>
             <form action="player" method="get">
+
+                <%-- data contains the information listed above. --%>
                 <% ArrayList<String> data = request.getAttribute("data"); %>
+
                 <table>
                     <tr>
                         <td> Nickname : </td><td> <%= data.get(0) %></td>

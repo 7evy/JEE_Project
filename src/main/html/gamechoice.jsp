@@ -18,6 +18,8 @@
 </a>
 <body>
 
+    <%-- The code below prevents any unauthorized user to access the page :
+         banned or non-logged in users are sent back to the Connection page. --%>
     <% User user = Manager.getCurrentUser();
         if (user == null || user.getStatus() > 1)
         {
@@ -27,33 +29,43 @@
         } %>
 
     <div id="boxdiv" style="width: 65%">
-    <br><br><br>
-    <h1 align="center">Choose a game</h1>
-    <br>
-    <div align="center">
-    <form action="/gamechoice" method="get">
-        <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
-        <table border="1px solid black" width="95%">
-            <tr border="1px solid black">
-                <th width="70%">Game</th>
-                <th width="30%">Number of players</th>
-            </tr>
+        <br><br><br>
+        <h1 align="center">Choose a game</h1>
+        <br>
+        <div align="center">
+            <%-- Calls GameChoiceServlet to fill an HTML table with the available games. --%>
+            <form action="/gamechoice" method="get">
 
-            <form id="form0" action="/gamechoice" method="post">
-                <input type="hidden" name="game" value="<%=data.get(0)%>">
-            </form>
+                <%-- data contains the names and numbers of players of every game in the database.
+                     Favorite games are displayed first. --%>
+                <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
+                
+                <table border="1px solid black" width="95%">
+                    <tr border="1px solid black">
+                        <th width="70%">Game</th>
+                        <th width="30%">Number of players</th>
+                    </tr>
 
-            <% for (int i=0 ; i<data.size() ; i+=2) { %>
-                <tr onclick="document.getElementById('form<%=i/2%>').submit()">
-                    <form id="form<%=i/2%>" action="/gamechoice" method="post">
-                        <input type="hidden" name="game" value="<%=data.get(i)%>">
+                    <form id="form0" action="/gamechoice" method="post">
+                        <input type="hidden" name="game" value="<%=data.get(0)%>">
                     </form>
-                    <td> <%= data.get(i) %> </td>
-                    <td> <%= data.get(i+1) %> </td>
-                </tr>
-            <% } %>
-        </table>
-    </form>
-    </div></div>
+
+                    <%-- Fills the table with data. --%>
+                    <% for (int i=0 ; i<data.size() ; i+=2) { %>
+                        <%-- The rows of the table are links to the corresponding game. --%>
+                        <tr onclick="document.getElementById('form<%=i/2%>').submit()">
+                            <%-- One form per game is used to interact with the servlet and redirect the user. --%>
+                            <form id="form<%=i/2%>" action="/gamechoice" method="post">
+                                <input type="hidden" name="game" value="<%=data.get(i)%>">
+                            </form>
+                            <td> <%= data.get(i) %> </td>
+                            <td> <%= data.get(i+1) %> </td>
+                        </tr>
+                    <% } %>
+
+                </table>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

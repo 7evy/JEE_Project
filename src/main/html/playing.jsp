@@ -12,6 +12,8 @@
 </head>
 <body>
 
+    <%-- The code below prevents any unauthorized user to access the page :
+         banned or non-logged in users are sent back to the Connection page. --%>
     <% User user = Manager.getCurrentUser();
         if (user == null || user.getStatus() > 1)
         {
@@ -21,11 +23,14 @@
         } %>
 
     <div align="center">
-    <h1> Currently playing : <%=request.getParameter("name")%></h1>
-    <form id="form" action="/playing" method="post">
-        <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
-        <button>End game</button>
-    </form>
+        <%-- Displays the name of the current game. --%>
+        <h1> Currently playing : <%=request.getParameter("name")%></h1>
+
+        <%-- Calls PlayingServlet to end the game and send the player back to the list of games. --%>
+        <form id="form" action="/playing" method="post">
+            <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
+            <button>End game</button>
+        </form>
     </div>
-    </body>
+</body>
 </html>
