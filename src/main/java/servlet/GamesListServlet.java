@@ -4,6 +4,8 @@ import tools.SQL;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 // import javax.servlet.RequestDispatcher;
@@ -63,13 +65,10 @@ public class GamesListServlet extends HttpServlet {
             }
         } else if (isDelete.equals("delete")) {
             ArrayList<String> games = SQL.allGameTitles();
-            int numberOfGames = games.size();
-            String checkbox = request.getParameter("checkbox");
-            if (!checkbox.equals("") && !checkbox.equals(null)) {
-                for (int i=0; i<numberOfGames; i++) {
-                    if(checkbox.equals(""+i)){
-                        SQL.deleteGame(games.get(i));
-                    }
+            List<String> checkboxes = Arrays.asList(request.getParameterValues("checkbox"));
+            for (int i=0; i<checkboxes.size(); i++) {
+                if(checkboxes.get(i) != null) {
+                    SQL.deleteGame(games.get(i));
                 }
             }
         }
