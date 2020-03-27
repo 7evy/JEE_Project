@@ -29,7 +29,7 @@
                         <p style="color:crimson"><b>Wrong credentials</b></p><br><br><br>
                 <% } else if ((int) request.getAttribute("cred") == 2) { %>
                         <p style="color:crimson"><b>Sorry. You have been banned. Acces denied</b></p><br><br><br>
-            <% } %>
+            <% } else {} } else {} %>
 
             <a href="/register">Create a new account</a>
         </div>

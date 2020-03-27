@@ -457,7 +457,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT COUNT(*) FROM Session WHERE idGame = ?;";
+            String request = "SELECT COUNT(*) FROM Session WHERE idGame = ? AND status = 1;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, gameId);
             res = statement.executeQuery();
@@ -699,7 +699,6 @@ public class SQL {
             res = statement.executeQuery();
             while(res.next()){
                 game.add(res.getString(1));
-                game.add(res.getString(2));
             }
         } catch (Exception e) {
             e.getMessage();

@@ -101,8 +101,8 @@ public class Manager{
             int index = all.indexOf(favs.get(i));
             String game = all.remove(index); // Removes favorite games from the list
             String nbPlayers = all.remove(index);
-            all.add(2, nbPlayers); // Adds back the favorites to the head of the list
-            all.add(2, game);
+            all.add(0, nbPlayers); // Adds back the favorites to the head of the list
+            all.add(0, game);
         }
         return all;
     }
