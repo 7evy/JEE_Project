@@ -724,7 +724,7 @@ public class SQL {
     }
 
     /**
-     * Gets all sessions of a game
+     * Gets all active sessions
      * 
      * @author Dejan PARIS
      */
@@ -740,6 +740,32 @@ public class SQL {
                 sessions.add(res.getString(1));
                 sessions.add(res.getString(2));
                 sessions.add(res.getString(3));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return sessions;
+    }
+    
+    /**
+     * Gets all archived sessions
+     * 
+     * @author Dejan PARIS
+     */
+    public static ArrayList<String> allArchivedSessions() {
+        ArrayList<String> sessions = new ArrayList<String>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT Game.name, User.pseudo, Session.startDate, Session.endDate FROM User JOIN Session ON User.idUser = Session.idUser JOIN Game ON Session.idGame = Game.idGame WHERE Session.status = 0;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
+            while(res.next()){
+                sessions.add(res.getString(1));
+                sessions.add(res.getString(2));
+                sessions.add(res.getString(3));
+                sessions.add(res.getString(4));
             }
         } catch (Exception e) {
             e.getMessage();
