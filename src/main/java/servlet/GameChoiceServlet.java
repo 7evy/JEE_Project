@@ -58,7 +58,7 @@ public class GameChoiceServlet extends HttpServlet {
         String pageName = "/playing.jsp";
         try {
             String game = request.getParameter("game");
-            SQL.newSession(Manager.getCurrentUser().getPseudo(), game, 1, SDate.now().toString(), null);
+            SQL.newSession(Manager.getCurrentUser().getPseudo(), game, 1, SDate.now().toString(), new SDate().toString());
             response.sendRedirect(pageName + "?name=" + game);
         } catch (IOException e) {}
     }

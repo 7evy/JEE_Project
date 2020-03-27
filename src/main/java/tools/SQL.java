@@ -346,7 +346,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT COUNT(*) FROM Session WHERE idUser = ?;";
+            String request = "SELECT COUNT(*) FROM Session WHERE idUser = ? AND status = 1;";
             PreparedStatement statement = con.prepareStatement(request);
             statement.setInt(1, userId);
             res = statement.executeQuery();
@@ -507,22 +507,22 @@ public class SQL {
     }
 
     /**
-     * Deletes a session of a player
+     * Archives a session by setting its status to 0.
      * 
-     * @author Adam RIVIERE
+     * @author Dejan PARIS
      * @param game name of the game
      * @param pseudo pseudo of the player
      */
-    public static void removeSession(String game, String pseudo) {
+    public static void archiveSession(String game, String pseudo) {
         try {
             int idGame = getGameId(game);
             int idUser = getUserId(pseudo);
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "DELETE FROM Session WHERE idUser = ? AND idGame = ?;";
+            String request = "UPDATE Session SET status = 0 WHERE idUser = ? AND idGame = ?;";
             PreparedStatement statement = con.prepareStatement(request);
-            statement.setInt(1, idGame);
-            statement.setInt(2, idUser);
+            statement.setInt(1, idUser);
+            statement.setInt(2, idGame);
             statement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
@@ -540,7 +540,7 @@ public class SQL {
      */
     public static void deleteSession(String game, String pseudo){
         removeUserFromGame(game);
-        removeSession(game, pseudo);
+        archiveSession(game, pseudo);
         currentGame("None", pseudo);
     }
 

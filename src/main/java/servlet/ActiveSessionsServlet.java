@@ -4,8 +4,7 @@ import tools.SQL;
 
 import java.io.IOException;
 import launch.Manager;
-import java.util.List;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
@@ -53,15 +52,12 @@ public class ActiveSessionsServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        List<String> sessions = Arrays.asList(request.getParameter("data").split(";"));
+        ArrayList<String> sessions = SQL.allActiveSessions();
         int nbSessions = sessions.size()/3;
-        String increment = "";
-        String checkboxName = request.getParameter("checkbox");
-        int checkboxNumber = Integer.parseInt(checkboxName);
-        checkboxName = ""+checkboxNumber;
         for (int i=0; i<nbSessions; i++) {
-            increment = ""+i;
-            if (checkboxName.equals(increment)) {
+            String increment = ""+i;
+            String checkbox = request.getParameter("checkbox" + increment);
+            if (checkbox != null) {
                 SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
             }
         }

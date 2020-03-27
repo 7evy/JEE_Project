@@ -58,7 +58,7 @@
                         <td> <%= sessions.get(i) %> </td>
                         <td> <%= sessions.get(i+1) %> </td>
                         <td> <%= sessions.get(i+2) %> </td>
-                        <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
+                        <td> <input type="checkbox" name="checkbox<%=i/3%>" value="1"> </td>
                     </tr>
                     <% } %>
                 </table>
