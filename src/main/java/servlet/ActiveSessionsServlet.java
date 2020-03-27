@@ -63,7 +63,7 @@ public class ActiveSessionsServlet extends HttpServlet {
                     SQL.endSession(sessions.get(3*i), sessions.get(3*i+1));
                 }
             }
-            doGet(request, response);
         } catch (Exception e) {}
+        doGet(request, response);
     }
 }
