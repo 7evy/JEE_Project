@@ -38,7 +38,6 @@ public class GameChoiceServlet extends HttpServlet {
      * @author Sébastien HERT
      * @author Dejan PARIS
      */
-    // TODO
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

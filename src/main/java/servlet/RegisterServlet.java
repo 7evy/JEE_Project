@@ -76,7 +76,6 @@ public class RegisterServlet extends HttpServlet {
         boolean register = true;
         //Checking the age
         if (!this.checkBirthday(birthday)){
-            //TODO
             request.setAttribute("birth", 1);
             register = false;
             System.out.println("There is a pb with the date. You must be over 13 to register.");
@@ -84,7 +83,6 @@ public class RegisterServlet extends HttpServlet {
         
         //Checking if the passwords are the same pwd
         if (!this.checkPassword(pwd1, pwd2)){
-            //TODO
             request.setAttribute("pswd", 1);
             register = false;
             System.out.println("The 2 passwords given are different.");
@@ -92,7 +90,6 @@ public class RegisterServlet extends HttpServlet {
                 
         //Checking if the address is already used
         if (!this.checkEMail(email)){
-            //TODO
             request.setAttribute("email", 1);
             register = false;
             System.out.println("Email already used.");
@@ -100,7 +97,6 @@ public class RegisterServlet extends HttpServlet {
 
         //Checking is the nickname is already taken
         if (!this.checkNickname(nickname)){
-            //TODO
             request.setAttribute("nickname", 1);
             register = false;
             System.out.println("The nickname is already taken");
