@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * Describes the servlet used on the gameslist page
  * @author Thomas LEPERCQ
  */
-@WebServlet(name = "activesessions", urlPatterns = { "/onsessions" })
+@WebServlet(name = "archivedsessions", urlPatterns = { "/offsessions" })
 public class ArchivedSessionsServlet extends HttpServlet {
 
     /**
@@ -51,7 +51,6 @@ public class ArchivedSessionsServlet extends HttpServlet {
      * @param response
      * @author Dejan PARIS
      */
-    // TODO
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

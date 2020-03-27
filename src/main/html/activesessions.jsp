@@ -44,7 +44,7 @@
     <%-- This page is refreshed every two minutes. --%>
     <% response.setIntHeader("Refresh", 120); %>
 
-    <div id="boxdiv" style="width: 70%; text-align: center;">
+    <div id="boxdiv" style="width: 70%">
         <br><br><br>
         <h1 align="center">Session list</h1>
         <br>
