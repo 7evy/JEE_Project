@@ -65,9 +65,9 @@ public class GamesListServlet extends HttpServlet {
             }
         } else if (isDelete.equals("delete")) {
             ArrayList<String> games = SQL.allGameTitles();
-            List<String> checkboxes = Arrays.asList(request.getParameterValues("checkbox"));
-            for (int i=0; i<checkboxes.size(); i++) {
-                if(checkboxes.get(i) != null) {
+            String checkbox = request.getParameter("checkbox");
+            for (int i=0; i<games.size(); i++) {
+                if(checkbox.equals(""+i)) {
                     SQL.deleteGame(games.get(i));
                 }
             }

@@ -75,7 +75,7 @@
                         <td> <%= data.get(i) %> </td>
                         <td> <%= data.get(i+1) %> </td>
                         <%-- Checkboxes allow to delete several games at the same time. --%>
-                        <td> <input type="checkbox" name="checkbox" value="1"> </td>
+                        <td> <input type="checkbox" name="checkbox" value="<%=i/2%>"> </td>
                     </tr>
                     <% } %>
 

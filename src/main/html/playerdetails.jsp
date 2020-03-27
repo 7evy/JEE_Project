@@ -34,7 +34,7 @@
             <form action="player" method="get">
 
                 <%-- data contains the information listed above. --%>
-                <% ArrayList<String> data = request.getAttribute("data"); %>
+                <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
 
                 <table>
                     <tr>
