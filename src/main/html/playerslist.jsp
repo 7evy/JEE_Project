@@ -75,14 +75,14 @@
                             <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(0) %> </td>
                             <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(1) %> </td>
                             <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(3) %> </td>
-                            <td> <input type="checkbox" name="checkbox"> </td>
+                            <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
                         </tr>
                     <% } %>
 
                 </table><br><br>
             </form>
             <%-- Used to ban players. --%>
-            <button id="ban">Ban</button>
+            <button id="ban" name="ban" value="ban">Ban</button>
         </div>
     </div>
 

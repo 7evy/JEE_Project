@@ -83,7 +83,7 @@
                         <td> <%= data.get(i+1) %> </td>
                         <td> <%= data.get(i+2) %> </td>
                         <%-- Checkboxes allow the admin to close several sessions at once. --%>
-                        <td> <input type="checkbox" name="checkbox" value="1"> </td>
+                        <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
                     </tr>
                     <% } %>
 

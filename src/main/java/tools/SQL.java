@@ -904,4 +904,28 @@ public class SQL {
         }
         return array;
     }
+
+    /**
+     * Returns all the nicknames of players
+     * 
+     * @author Dejan PARIS
+     * @return list of pseudos
+     */
+    public static ArrayList<String> allPlayers(){
+        ArrayList<String> array = new ArrayList<String>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT pseudo FROM User;";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery(); 
+            while(res.next()){
+                array.add(res.getString(1));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return array;
+    }
 }
