@@ -64,7 +64,7 @@
                     <tr>
                         <td> <%= games.get(i) %> </td>
                         <td> <%= games.get(i+1) %> </td>
-                        <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
+                        <td> <input type="checkbox" name="checkbox<%=i/2%>" value="1"> </td>
                     </tr>
                     <% } %>
                 </table>

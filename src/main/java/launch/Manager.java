@@ -82,7 +82,7 @@ public class Manager{
     public static String listToString(ArrayList<String> list)
     {
         String s = "";
-        for (int i=2 ; i<list.size() ; i++)
+        for (int i=0 ; i<list.size() ; i++)
             s = s + list.get(i) + ";";
         return s;
     }
@@ -115,10 +115,7 @@ public class Manager{
     public static String activeSessionsList()
     {
         ArrayList<String> all = SQL.allActiveSessions();
-        String s = "";
-        for (int i=0 ; i<all.size() ; i++)
-            s = s + all.get(i) + ";";
-        return s;
+        return listToString(all);
     }
 
     /**

@@ -4,8 +4,7 @@ import tools.SQL;
 
 import java.io.IOException;
 import launch.Manager;
-import java.util.List;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
@@ -64,16 +63,13 @@ public class GamesListServlet extends HttpServlet {
                 SQL.newGame(newgame);
             }
         } else if (isDelete.equals("delete")) {
-            List<String> games = Arrays.asList(request.getParameter("data").split(";"));
-            String checkboxName = request.getParameter("checkbox");
-            int numberOfGames = games.size()/2;
-            String increment = "";
-            int checkboxNumber = Integer.parseInt(checkboxName);
-            checkboxName = ""+checkboxNumber;
+            ArrayList<String> games = SQL.allGameTitles();
+            int numberOfGames = games.size();
             for (int i=0; i<numberOfGames; i++) {
-                increment = ""+i;
-                if (checkboxName.equals(increment)) {
-                        SQL.deleteGame(games.get(2*i));
+                String increment = ""+i;
+                String checkbox = request.getParameter("checkbox" + increment);
+                if (checkbox != null) {
+                    SQL.deleteGame(games.get(i));
                 }
             }
         }

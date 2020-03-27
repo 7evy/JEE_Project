@@ -656,16 +656,41 @@ public class SQL {
      * Returns a list of all the games associated with the number of players who are playing
      * 
      * @author Adam RIVIERE
-     * @return the list of all games
+     * @return the list of all games and their respective numbers of players.
      */
     public static ArrayList<String> allGames(){
         ArrayList<String> game = new ArrayList<String>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT name,nbPlayers FROM Game;";
+            String request = "SELECT name,nbPlayers FROM Game WHERE name != 'None';";
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery(); 
+            while(res.next()){
+                game.add(res.getString(1));
+                game.add(res.getString(2));
+            }
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        return game;
+    }
+
+    /**
+     * Returns a list of all the games.
+     * 
+     * @author Dejan PARIS
+     * @return the list of all games
+     */
+    public static ArrayList<String> allGameTitles(){
+        ArrayList<String> game = new ArrayList<String>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "SELECT name FROM Game WHERE name != 'None';";
+            PreparedStatement statement = con.prepareStatement(request);
+            res = statement.executeQuery();
             while(res.next()){
                 game.add(res.getString(1));
                 game.add(res.getString(2));
