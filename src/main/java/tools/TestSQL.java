@@ -55,6 +55,8 @@ public class TestSQL{
         SQL.newSession("Noobdu22", "Minecraft", 1, "2020/03/24 - 02:00:50", "2020/03/24 - 20:05:00");
         SQL.newSession("jaiplusdidee", "Zelda", 1, "2020/03/26 - 16:32:00", "2020/03/26 - 15:26:00");
         SQL.newSession("Darius1325", "Total War Warhammer", 1, "2020/03/23 - 16:32:00", "2020/03/23 - 21:05:00");
+
+        // SQL.playerList().toString();
         
         System.out.println("ok");
     }

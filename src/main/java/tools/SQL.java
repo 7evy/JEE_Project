@@ -367,8 +367,8 @@ public class SQL {
      * @author Adam RIVIERE
      * @return the list of all players
      */
-    public static ArrayList<ArrayList<?>> playerList(){
-        ArrayList<ArrayList<?>> array = new ArrayList<ArrayList<?>>();
+    public static ArrayList<ArrayList<String>> playerList(){
+        ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
@@ -376,13 +376,19 @@ public class SQL {
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery(); 
             while(res.next()){
-                ArrayList<Object> player = new ArrayList<Object>();
+                // System.out.println("tour");
+                ArrayList<String> player = new ArrayList<String>();
                 player.add(res.getString(1));
                 player.add(res.getString(2));
-                player.add(res.getInt(3));
-                int nbSessions = nbSessions(player.get(0).toString());
-                player.add(nbSessions);
+                player.add(res.getString(3));
+                // int nbSessions = nbSessions(player.get(0).toString());
+                // player.add(nbSessions);
+                System.out.println(player.toString());
                 array.add(player);
+            }
+            for(int i = 0;i < array.size();i++){
+                String nbSessions = Integer.toString(nbSessions(array.get(i).get(0).toString()));
+                array.get(i).add(nbSessions);
             }
         } catch (Exception e) {
             e.getMessage();
