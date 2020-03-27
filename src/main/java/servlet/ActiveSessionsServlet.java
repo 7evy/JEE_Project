@@ -59,8 +59,7 @@ public class ActiveSessionsServlet extends HttpServlet {
             ArrayList<String> sessions = SQL.allActiveSessions();
             int nbSessions = sessions.size()/3;
             for (int i=0; i<nbSessions; i++) {
-                String increment = ""+i;
-                String checkbox = request.getParameter("checkbox" + increment);
+                String checkbox = request.getParameter("checkbox" + i);
                 if (checkbox != null) {
                     SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
                 }

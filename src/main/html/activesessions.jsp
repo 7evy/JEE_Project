@@ -38,6 +38,7 @@
             rd.forward(request, response);
         } %>
 
+    <% response.setIntHeader("Refresh", 30); %>
     <div id="boxdiv" style="width: 70%; text-align: center;">
         <br><br><br>
         <h1 align="center">Session list</h1>
