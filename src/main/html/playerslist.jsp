@@ -82,7 +82,9 @@
                 </table><br><br>
             </form>
             <%-- Used to ban players. --%>
-            <button id="ban" name="ban" value="ban">Ban</button>
+            <form action="/playerslist" method="post">
+                <button id="ban" name="ban" value="ban">Ban</button>
+            </form>
         </div>
     </div>
 

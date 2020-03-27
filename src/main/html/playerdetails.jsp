@@ -31,7 +31,7 @@
         <div align="center">
 
             <%-- Calls PlayerServlet to obtain the nickname, email address, birthday, registration date and current game of the player. --%>
-            <form action="player" method="get">
+            <form action="/player" method="get">
 
                 <%-- data contains the information listed above. --%>
                 <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
