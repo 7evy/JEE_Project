@@ -31,12 +31,12 @@
 <body>
 
     <% User user = Manager.getCurrentUser();
-        if (user == null)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 1)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 2)
-            response.sendRedirect("/index.jsp?cred=2"); %>
+        if (user == null || user.getStatus() > 0)
+        {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            request.setAttribute("cred", 1);
+            rd.forward(request, response);
+        } %>
 
     <div id="boxdiv" style="width: 70%; text-align: center;">
         <br><br><br>
@@ -49,7 +49,7 @@
             <button>Close Session</button>
             <br><br>
             <div align="center">
-                <% ArrayList<String> data = request.getAttribute("data"); %>
+                <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
                 <table border="1px solid black">
                     <tr border="1px solid black">
                         <th width="30%">Game</th>

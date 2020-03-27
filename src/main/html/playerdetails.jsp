@@ -15,12 +15,12 @@
 <body>
 
     <% User user = Manager.getCurrentUser();
-        if (user == null)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 1)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 2)
-            response.sendRedirect("/index.jsp?cred=2"); %>
+        if (user == null || user.getStatus() > 0)
+        {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            request.setAttribute("cred", 1);
+            rd.forward(request, response);
+        } %>
 
     <div id="boxdiv" style="width:40%">
         <h1 align="center">

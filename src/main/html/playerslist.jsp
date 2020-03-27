@@ -31,12 +31,12 @@
 <body>
 
     <% User user = Manager.getCurrentUser();
-        if (user == null)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 1)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 2)
-            response.sendRedirect("/index.jsp?cred=2"); %>
+        if (user == null || user.getStatus() > 0)
+        {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            request.setAttribute("cred", 1);
+            rd.forward(request, response);
+        } %>
 
     <div id="boxdiv">
         <br><br><br>
@@ -44,15 +44,23 @@
         <br>
         <div align="center">
         <form action="/playerslist" method="get">
-        <% ArrayList<String> data = request.getAttribute("data"); %>
+        <% ArrayList<ArrayList<Object>> data = (ArrayList<ArrayList<Object>>) request.getAttribute("data"); %>
         <table border="1px solid black">
                 <tr border="1px solid black">
                     <th>Nickname</th>
                     <th>Registration date</th>
                     <th>Sessions played</th>
                </tr>
+
+            <form id="form0" action="/playerslist" method="post">
+                <input type="hidden" name="pseudo" value="<%=data.get(0).get(0)%>">
+            </form>
+
             <% for (int i=0 ; i<data.size() ; i++) { %>
-                <tr id="clickable" onclick="document.location='/playerdetails.jsp?data=<%=showAtributes.get(0)%>'">
+                <tr onclick="document.getElementById('form<%=i%>').submit()">
+                    <form id="form<%=i%>" action="/playerslist" method="post">
+                        <input type="hidden" name="pseudo" value="<%=data.get(i).get(0)%>">
+                    </form>
                     <td> <%= data.get(i).get(0) %> </td>
                     <td> <%= data.get(i).get(1) %> </td>
                     <td> <%= data.get(i).get(2) %> </td>

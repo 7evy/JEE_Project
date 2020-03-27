@@ -61,12 +61,10 @@ public class GameChoiceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/playing.jsp");
         try {
             String game = request.getParameter("game");
             SQL.newSession(Manager.getCurrentUser().getPseudo(), game, 1, SDate.now().toString(), new SDate().toString());
-            request.setAttribute("name", game);
-            rd.forward(request, response);
+            response.sendRedirect("/playing.jsp?name=" + game);
         } catch (Exception e) {}
     }
 }

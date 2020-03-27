@@ -3,7 +3,6 @@ package servlet;
 import tools.SQL;
 
 import java.io.IOException;
-import launch.Manager;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;

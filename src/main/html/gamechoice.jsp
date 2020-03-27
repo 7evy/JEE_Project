@@ -19,10 +19,12 @@
 <body>
 
     <% User user = Manager.getCurrentUser();
-        if (user == null)
-            response.sendRedirect("/index.jsp?cred=1");
-        else if (user.getStatus() == 2)
-            response.sendRedirect("/index.jsp?cred=2"); %>
+        if (user == null || user.getStatus() > 1)
+        {
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+            request.setAttribute("cred", 1);
+            rd.forward(request, response);
+        } %>
 
     <div id="boxdiv" style="width: 65%">
     <br><br><br>
@@ -30,7 +32,7 @@
     <br>
     <div align="center">
     <form action="/gamechoice" method="get">
-        <% ArrayList<String> data = request.getAttribute("data"); %>
+        <% ArrayList<String> data = (ArrayList<String>) request.getAttribute("data"); %>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="70%">Game</th>
@@ -42,7 +44,7 @@
             </form>
 
             <% for (int i=0 ; i<data.size() ; i+=2) { %>
-                <tr id="clickable" onclick="document.getElementById('form<%=i/2%>').submit()">
+                <tr onclick="document.getElementById('form<%=i/2%>').submit()">
                     <form id="form<%=i/2%>" action="/gamechoice" method="post">
                         <input type="hidden" name="game" value="<%=data.get(i)%>">
                     </form>

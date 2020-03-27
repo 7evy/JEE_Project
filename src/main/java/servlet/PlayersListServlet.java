@@ -29,5 +29,20 @@ public class PlayersListServlet extends HttpServlet {
             rd.forward(request, response);
         } catch (Exception e) {}
     }
+    
+    /**
+     * Shows the details of the selected player.
+     * @param request
+     * @param response
+     * @author Dejan PARIS
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
+        try {
+            String pseudo = request.getParameter("pseudo");
+            response.sendRedirect("/playerdetails.jsp?pseudo=" + pseudo);
+        } catch (Exception e) {}
+    }
 }

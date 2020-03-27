@@ -39,7 +39,7 @@ public class PlayerServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/playerdetails.jsp");
-            request.setAttribute("data", SQL.playerInfo(""));
+            request.setAttribute("data", SQL.playerInfo(request.getParameter("pseudo")));
             rd.forward(request, response);
         } catch (Exception e) {}
     }
