@@ -693,7 +693,6 @@ public class SQL {
             res = statement.executeQuery();
             while(res.next()){
                 game.add(res.getString(1));
-                game.add(res.getString(2));
             }
         } catch (Exception e) {
             e.getMessage();
