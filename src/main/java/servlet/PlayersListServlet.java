@@ -42,17 +42,19 @@ public class PlayersListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            String pseudo = request.getParameter("pseudo");
-            response.sendRedirect("/playerdetails.jsp?pseudo=" + pseudo);
             if (request.getParameter("ban").equals("ban"))
             {  
                 ArrayList<String> players = SQL.allPlayers();
                 String checkbox = request.getParameter("checkbox");
                 for (int i=0; i<players.size(); i++) {
                     if(checkbox.equals(""+i)) {
-                        SQL.deleteGame(players.get(i));
+                        SQL.ban(players.get(i));
                     }
                 }
+            }
+            else {
+                String pseudo = request.getParameter("pseudo");
+                response.sendRedirect("/playerdetails.jsp?pseudo=" + pseudo);
             }
         } catch (Exception e) {}
     }

@@ -40,6 +40,7 @@ public class PlayerServlet extends HttpServlet {
         try {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/playerdetails.jsp");
             request.setAttribute("data", SQL.playerInfo(request.getParameter("pseudo")));
+            System.out.println(request.getParameter("pseudo"));
             rd.forward(request, response);
         } catch (Exception e) {}
     }
