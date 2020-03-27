@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="launch.Manager" %>
 <%@ page import="user.User" %>
 <html lang="en">
@@ -31,8 +30,7 @@
     <br>
     <div align="center">
     <form action="/gamechoice" method="get">
-        <% String data = request.getParameter("data");
-           List<String> games = Arrays.asList(data.split(";")); %>
+        <% ArrayList<String> data = request.getAttribute("data"); %>
         <table border="1px solid black" width="95%">
             <tr border="1px solid black">
                 <th width="70%">Game</th>
@@ -40,16 +38,16 @@
             </tr>
 
             <form id="form0" action="/gamechoice" method="post">
-                <input type="hidden" name="game" value="<%=games.get(0)%>">
+                <input type="hidden" name="game" value="<%=data.get(0)%>">
             </form>
 
-            <% for (int i=0 ; i<games.size() ; i+=2) { %>
+            <% for (int i=0 ; i<data.size() ; i+=2) { %>
                 <tr id="clickable" onclick="document.getElementById('form<%=i/2%>').submit()">
                     <form id="form<%=i/2%>" action="/gamechoice" method="post">
-                        <input type="hidden" name="game" value="<%=games.get(i)%>">
+                        <input type="hidden" name="game" value="<%=data.get(i)%>">
                     </form>
-                    <td> <%= games.get(i) %> </td>
-                    <td> <%= games.get(i+1) %> </td>
+                    <td> <%= data.get(i) %> </td>
+                    <td> <%= data.get(i+1) %> </td>
                 </tr>
             <% } %>
         </table>

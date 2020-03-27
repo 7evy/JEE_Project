@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="launch.Manager" %>
 <%@ page import="user.User" %>
 <html lang="en">
@@ -25,39 +24,38 @@
 
     <div id="boxdiv" style="width:40%">
         <h1 align="center">
-            Nom du jeu
+            Player info
         </h1><br>
         <div align="center">
             <form action="player" method="get">
-                <% String data = request.getParameter("data"); %>
-                <% List<String> details = Arrays.asList(data.split(";")); %>
+                <% ArrayList<String> data = request.getAttribute("data"); %>
                 <table>
                     <tr>
-                        <td> Nickname : </td><td> <%= details.get(0) %></td>
+                        <td> Nickname : </td><td> <%= data.get(0) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Email address : </td><td> <%= details.get(1) %></td>
+                        <td> Email address : </td><td> <%= data.get(1) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Currently playing : </td><td> <%= details.get(2) %></td>
+                        <td> Currently playing : </td><td> <%= data.get(2) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Registration date : </td><td> <%= details.get(3) %></td>
+                        <td> Registration date : </td><td> <%= data.get(3) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td> Birthday : </td><td> <%= details.get(4) %></td>
+                        <td> Birthday : </td><td> <%= data.get(4) %></td>
                     </tr>
                     <tr></tr>
                     <tr></tr>

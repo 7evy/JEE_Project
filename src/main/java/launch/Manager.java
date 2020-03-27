@@ -89,10 +89,10 @@ public class Manager{
 
     /**
      * Creates the list of games of the current player : favorite games first, then the rest.
-     * @return A String containing all of the games and player numbers, separated by ";".
+     * @return A list containing all the games and their respective players numbers.
      * @author Dejan PARIS
      */
-    public static String makeGamesList()
+    public static ArrayList<String> makeGamesList()
     {
         ArrayList<String> all = SQL.allGames();
         ArrayList<String> favs = SQL.gameList(getCurrentUser().getPseudo());
@@ -104,7 +104,7 @@ public class Manager{
             all.add(2, nbPlayers); // Adds back the favorites to the head of the list
             all.add(2, game);
         }
-        return listToString(all);
+        return all;
     }
 
     /**

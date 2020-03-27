@@ -6,6 +6,8 @@ import java.io.IOException;
 import launch.Manager;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
 // import javax.servlet.ServletOutputStream;
@@ -34,12 +36,14 @@ public class ActiveSessionsServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String pageName = "/activesessions.jsp";
+            throws ServletException, IOException {
+                
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/activesessions.jsp");
         try {
-            String sessions = Manager.activeSessionsList();
-            response.sendRedirect(pageName + "?data=" + sessions);
-        } catch (IOException e) {}
+            ArrayList<String> sessions = SQL.allActiveSessions();
+            request.setAttribute("data", sessions);
+            rd.forward(request, response);
+        } catch (Exception e) {}
     }
 
     /**
@@ -50,17 +54,19 @@ public class ActiveSessionsServlet extends HttpServlet {
      */
     // TODO
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws ServletException, IOException {
 
-        ArrayList<String> sessions = SQL.allActiveSessions();
-        int nbSessions = sessions.size()/3;
-        for (int i=0; i<nbSessions; i++) {
-            String increment = ""+i;
-            String checkbox = request.getParameter("checkbox" + increment);
-            if (checkbox != null) {
-                SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
+        try {
+            ArrayList<String> sessions = SQL.allActiveSessions();
+            int nbSessions = sessions.size()/3;
+            for (int i=0; i<nbSessions; i++) {
+                String increment = ""+i;
+                String checkbox = request.getParameter("checkbox" + increment);
+                if (checkbox != null) {
+                    SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
+                }
             }
-        }
-        doGet(request, response);
+            doGet(request, response);
+        } catch (Exception e) {}
     }
 }

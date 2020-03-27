@@ -21,11 +21,11 @@
             <input type="submit" id="login" value="Submit"><br><br>
         </form>
         <%
-            if (request.getParameter("cred") == null) {
+            if (request.getAttribute("cred") == null) {
                 //default page
-            } else if (request.getParameter("cred").equals("1")) { %>
+            } else if ((int) request.getAttribute("cred") == 1) { %>
                 <p style="color:crimson"><b>Wrong credentials</b></p><br><br><br>
-            <% } else if (request.getParameter("cred").equals("2")) { %>
+            <% } else if ((int) request.getAttribute("cred") == 2) { %>
                 <p style="color:crimson"><b>Sorry. You have been banned. Acces denied</b></p><br><br><br>
             <% }
         %>

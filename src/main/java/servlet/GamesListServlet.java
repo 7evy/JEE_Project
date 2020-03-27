@@ -3,9 +3,9 @@ package servlet;
 import tools.SQL;
 
 import java.io.IOException;
-import launch.Manager;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
 // import javax.servlet.ServletOutputStream;
@@ -36,14 +36,13 @@ public class GamesListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        String pageName = "/gameslist.jsp";
+        
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/gameslist.jsp");
         try {
-            String games = Manager.makeGamesList();
-            response.sendRedirect(pageName + "?data=" + games);
-        } catch (IOException e) {
-            System.out.println("Error : IOException");
-            e.printStackTrace();
-        }
+            ArrayList<String> games = SQL.allGames();
+            request.setAttribute("data", games);
+            rd.forward(request, response);
+        } catch (Exception e) {}
     }
 
     /**

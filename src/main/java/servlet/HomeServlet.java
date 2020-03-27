@@ -63,6 +63,7 @@ public class HomeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String nickname = request.getParameter("nickname");
         String pwd = request.getParameter("password");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
         if(connectionCheck(nickname,pwd) == true){
             User user = new User(nickname);
             Manager.setCurrentUser(user);
@@ -78,13 +79,15 @@ public class HomeServlet extends HttpServlet {
                     break;
                 //Banned
                 case 2:
-                    response.sendRedirect("/index.jsp?cred=2");
+                    request.setAttribute("cred", 2);
+                    rd.forward(request, response);
                     break;
                 default:
                     break;
             }
         }else{
-            response.sendRedirect("/index.jsp?cred=1");
+            request.setAttribute("cred", 1);
+            rd.forward(request, response);
         }
     }
 

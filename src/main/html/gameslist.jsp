@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="launch.Manager" %>
 <%@ page import="user.User" %>
 <html lang="en">
@@ -48,8 +47,7 @@
             <button id="addelete" name="addelete" value="delete">Delete</button>
             <br><br>
             <div align="center">
-                <% String data = request.getParameter("data");
-                List<String> games = Arrays.asList(data.split(";"));%>
+                <% ArrayList<String> data = request.getAttribute("data"); %>
                 <table border="1px solid black">
                     <tr border="1px solid black">
                         <th width="50%">Game</th>
@@ -60,10 +58,10 @@
                         <th width="50%"></th>
                         <th></th>
                     </tr>
-                    <% for (int i=0 ; i<games.size() ; i+=2){ %>
+                    <% for (int i=0 ; i<data.size() ; i+=2){ %>
                     <tr>
-                        <td> <%= games.get(i) %> </td>
-                        <td> <%= games.get(i+1) %> </td>
+                        <td> <%= data.get(i) %> </td>
+                        <td> <%= data.get(i+1) %> </td>
                         <td> <input type="checkbox" name="checkbox<%=i/2%>" value="1"> </td>
                     </tr>
                     <% } %>

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 // import java.util.ArrayList;
 // import tools.SQL;
@@ -8,6 +9,8 @@ import launch.Manager;
 import tools.SDate;
 import tools.SQL;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
 // import javax.servlet.ServletOutputStream;
@@ -38,11 +41,13 @@ public class GameChoiceServlet extends HttpServlet {
     // TODO
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String pageName = "/gamechoice.jsp";
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/gamechoice.jsp");
         try {
-            String games = Manager.makeGamesList();
-            response.sendRedirect(pageName + "?data=" + games);
+            ArrayList<String> games = Manager.makeGamesList();
+            request.setAttribute("data", games);
+            rd.forward(request, response);
         } catch (IOException e) {}
     }
     
@@ -54,12 +59,14 @@ public class GameChoiceServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String pageName = "/playing.jsp";
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/playing.jsp");
         try {
             String game = request.getParameter("game");
             SQL.newSession(Manager.getCurrentUser().getPseudo(), game, 1, SDate.now().toString(), new SDate().toString());
-            response.sendRedirect(pageName + "?name=" + game);
-        } catch (IOException e) {}
+            request.setAttribute("name", game);
+            rd.forward(request, response);
+        } catch (Exception e) {}
     }
 }

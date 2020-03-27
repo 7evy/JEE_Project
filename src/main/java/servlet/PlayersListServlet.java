@@ -2,12 +2,14 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import launch.Manager;
+import tools.SQL;
 
 @WebServlet(name = "playerslist", urlPatterns = { "/playerslist" })
 public class PlayersListServlet extends HttpServlet {
@@ -19,16 +21,13 @@ public class PlayersListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-                String pageName = "/playerslist.jsp";
-                try{
-                    String allPlayers = Manager.makePlayersList();
-                    response.sendRedirect(pageName + "?data=" + allPlayers);
-                }
-                catch (IOException e) {
-                System.out.println("Error : IOException");
-                e.printStackTrace();
-            }
-        }
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/playerslist.jsp");
+        try {
+            request.setAttribute("data", SQL.playerList());
+            rd.forward(request, response);
+        } catch (Exception e) {}
+    }
 
 }

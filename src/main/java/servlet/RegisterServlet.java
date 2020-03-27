@@ -72,53 +72,49 @@ public class RegisterServlet extends HttpServlet {
         String pwd2 = request.getParameter("password2");
         String email = request.getParameter("email");
         String birthday = request.getParameter("birthday");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
         // System.out.println(nickname + " " + pwd1 + " " + pwd2 + " " + email + " " + birthday);
-
-         ArrayList<String> argUrlList=new ArrayList<String>();
-         String argUrl = "";
-
+        boolean register = true;
         //Checking the age
         if (!this.checkBirthday(birthday)){
             //TODO
-            argUrlList.add("birth=1");
+            request.setAttribute("birth", 1);
+            register = false;
             System.out.println("There is a pb with the date. You must be over 13 to register.");
         }
         
         //Checking if the passwords are the same pwd
         if (!this.checkPassword(pwd1, pwd2)){
             //TODO
-            argUrlList.add("pswd=1");
+            request.setAttribute("pswd", 1);
+            register = false;
             System.out.println("The 2 passwords given are different.");
         }
                 
         //Checking if the address is already used
         if (!this.checkEMail(email)){
             //TODO
-            argUrlList.add("email=1");
+            request.setAttribute("email", 1);
+            register = false;
             System.out.println("Email already used.");
         }
 
         //Checking is the nickname is already taken
         if (!this.checkNickname(nickname)){
             //TODO
-            argUrlList.add("nickname=1");
+            request.setAttribute("nickname", 1);
+            register = false;
             System.out.println("The nickname is already taken");
         }
-        
-        for(int j =0;j<argUrlList.size();j++){
-            argUrl = argUrl.concat(argUrlList.get(j)+"&");
-          }
 
-        if(argUrl.equals("")){
+        if(register){
             // User user = new User()
             SQL.newUser(nickname, Hasher.hashing(pwd1), email, SDate.now().toString(), SDate.htmlToSdate(birthday).toString());
             Manager.setCurrentUser(new User(nickname));
             response.sendRedirect("/gamechoice");
         }
         else{
-            String s = "/register.jsp?";
-            s = s.concat(argUrl);
-            response.sendRedirect(s);
+            rd.forward(request, response);
         }
     }
 
