@@ -57,5 +57,6 @@ public class PlayersListServlet extends HttpServlet {
                 response.sendRedirect("/playerdetails.jsp?pseudo=" + pseudo);
             }
         } catch (Exception e) {}
+        doGet(request, response);
     }
 }
