@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import launch.Manager;
 import tools.SQL;
 
 /**
@@ -33,13 +34,14 @@ public class PlayingServlet extends HttpServlet {
      * @param response
      * @author Dejan PARIS
      */
-    // TODO
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String game = request.getParameter("name");
-        SQL.removeUserFromGame(game);
-        response.sendRedirect("/gamechoice");
+            throws IOException {
+        
+        try {
+            String game = request.getParameter("name");
+            SQL.deleteSession(game, Manager.getCurrentUser().getPseudo());
+            response.sendRedirect("/gamechoice");
+        } catch (IOException e) {}
     }
 }

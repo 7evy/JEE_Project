@@ -1,10 +1,14 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+
 // import java.util.ArrayList;
 // import tools.SQL;
 import launch.Manager;
+import tools.SDate;
 import tools.SQL;
+import user.User;
 
 // import javax.servlet.RequestDispatcher;
 // import javax.servlet.ServletException;
@@ -40,36 +44,24 @@ public class GameChoiceServlet extends HttpServlet {
         String pageName = "/gamechoice.jsp";
         try {
             String games = Manager.makeGamesList();
-            //ArrayList<String> data = new ArrayList<String>();   // Temporary
-            //data.add("Minecraft"); data.add("1");               // Temporary
-            //data.add("Fortnite"); data.add("0");                // Temporary
-            //data.add("Dragon Quest"); data.add("3");            // Temporary
             response.sendRedirect(pageName + "?data=" + games);
-        } catch (IOException e) {
-            System.out.println("Error : IOException");
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
     }
     
     /**
-     * Displays the page with the list of the games.
+     * Starts the chosen game for the user.
      * @param request
      * @param response
-     * @author Sébastien HERT
      * @author Dejan PARIS
      */
-    // TODO
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String pageName = "/playing.jsp";
         try {
             String game = request.getParameter("game");
-            SQL.addUserToGame(game);
+            SQL.newSession(Manager.getCurrentUser().getPseudo(), game, 1, SDate.now().toString(), null);
             response.sendRedirect(pageName + "?name=" + game);
-        } catch (IOException e) {
-            System.out.println("Error : IOException");
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
     }
 }
