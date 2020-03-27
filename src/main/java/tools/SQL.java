@@ -340,18 +340,21 @@ public class SQL {
      * @param pseudo pseudo of the player
      * @return the number of sessions
      */
-    public static int nbSessions(String pseudo){
-        int userId = getUserId(pseudo);
-        int nb = 0;
+    public static ArrayList<ArrayList<String>> nbSessions(){
+        // int userId = getUserId(pseudo);
+        ArrayList<ArrayList<String>> nb = new ArrayList<ArrayList<String>>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT COUNT(*) FROM Session WHERE idUser = ? AND status = 1;";
+            String request = "SELECT COUNT(*),pseudo FROM Session JOIN User ON Session.idUser = User.idUser GROUP BY User.idUser;";
             PreparedStatement statement = con.prepareStatement(request);
-            statement.setInt(1, userId);
+            // statement.setInt(1, userId);
             res = statement.executeQuery();
             while(res.next()) {
-                nb = res.getInt(1);
+                ArrayList<String> player = new ArrayList<String>();
+                player.add(res.getString(1));
+                player.add(res.getString(2));
+                nb.add(player);
             }
         } catch (Exception e) {
             e.getMessage();
@@ -372,7 +375,7 @@ public class SQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
-            String request = "SELECT pseudo,registration,status FROM User;";
+            String request = "SELECT pseudo,registration,status FROM User GROUP BY idUser;";
             PreparedStatement statement = con.prepareStatement(request);
             res = statement.executeQuery(); 
             while(res.next()){
@@ -383,12 +386,21 @@ public class SQL {
                 player.add(res.getString(3));
                 // int nbSessions = nbSessions(player.get(0).toString());
                 // player.add(nbSessions);
-                System.out.println(player.toString());
+                // System.out.println(player.toString());
                 array.add(player);
             }
-            for(int i = 0;i < array.size();i++){
-                String nbSessions = Integer.toString(nbSessions(array.get(i).get(0).toString()));
-                array.get(i).add(nbSessions);
+            ArrayList<ArrayList<String>> nbSessions = nbSessions();
+            for(int i = 0;i < array.size() - 1;i++){
+                boolean ok = false;
+                for(int j = 0;j < nbSessions.size();j++){
+                    if(nbSessions.get(j).get(1).equals(array.get(i).get(0))){
+                        array.get(i).add(nbSessions.get(j).get(0));
+                        ok = true;
+                    }
+                }
+                if(ok == false){
+                    array.get(i).add("0");
+                }
             }
         } catch (Exception e) {
             e.getMessage();
