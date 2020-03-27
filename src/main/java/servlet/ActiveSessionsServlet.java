@@ -4,6 +4,8 @@ import tools.SQL;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,11 +59,10 @@ public class ActiveSessionsServlet extends HttpServlet {
 
         try {
             ArrayList<String> sessions = SQL.allActiveSessions();
-            int nbSessions = sessions.size()/3;
-            for (int i=0; i<nbSessions; i++) {
-                String checkbox = request.getParameter("checkbox" + i);
-                if (checkbox != null) {
-                    SQL.deleteSession(sessions.get(3*i), sessions.get(3*i+1));
+            List<String> checkboxes = Arrays.asList(request.getParameterValues("checkbox"));
+            for (int i=0; i<checkboxes.size(); i++) {
+                if(checkboxes.get(i) != null) {
+                    SQL.endSession(sessions.get(3*i), sessions.get(3*i+1));
                 }
             }
             doGet(request, response);

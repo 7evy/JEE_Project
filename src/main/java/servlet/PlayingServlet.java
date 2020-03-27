@@ -40,7 +40,7 @@ public class PlayingServlet extends HttpServlet {
         
         try {
             String game = request.getParameter("name");
-            SQL.deleteSession(game, Manager.getCurrentUser().getPseudo());
+            SQL.endSession(game, Manager.getCurrentUser().getPseudo());
             response.sendRedirect("/gamechoice");
         } catch (IOException e) {}
     }

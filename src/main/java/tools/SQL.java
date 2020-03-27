@@ -544,10 +544,41 @@ public class SQL {
      * @param game name of the game
      * @param pseudo pseudo of the player
      */
-    public static void deleteSession(String game, String pseudo){
+    public static void endSession(String game, String pseudo){
         removeUserFromGame(game);
         archiveSession(game, pseudo);
         currentGame("None", pseudo);
+    }
+
+    /**
+     * Deletes a session of a player and modifies the differents tables in consequence
+     * 
+     * @author Adam RIVIERE
+     * @param game name of the game
+     * @param pseudo pseudo of the player
+     */
+    public static void deleteSession(String game, String pseudo){
+        supprSession(game, pseudo);
+        currentGame("None", pseudo);
+    }
+
+    public static void supprSession(String game, String pseudo)
+    {
+        try {
+            int idGame = getGameId(game);
+            int idUser = getUserId(pseudo);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url+"/PDB_JEE",user,passwd);
+            String request = "DELETE FROM Session WHERE idGame = ? AND idUser = ?;";
+            PreparedStatement statement = con.prepareStatement(request);
+            statement.setInt(1, idGame);
+            statement.setInt(2, idUser);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.getMessage();
+            e.printStackTrace();
+            System.out.println("Jeu non existant ! !");
+        }
     }
 
     /**

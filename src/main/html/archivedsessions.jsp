@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="launch.Manager" %>
 <%@ page import="user.User" %>
 <html lang="en">
@@ -24,6 +25,11 @@
     <a href="/gameslist">
     <button type="button" style="float: right;">
         Games
+    </button>
+    </a>
+    <a href="/onsessions">
+    <button type="button" style="float: right;">
+        Sessions
     </button>
     </a>
 </div>
@@ -59,17 +65,17 @@
                             <th width="20%">Player</th>
                             <th width="20%">Started at</th>
                             <th width="20%">Ended at</th>
-                            <th width="20%">Duration</th>
+                            <%--<th width="20%">Duration</th>--%>
                         </tr>
 
-                        <%-- Fills the table with data. --%>
-                        <% for (int i=0 ; i<data.size() ; i+=5){ %>
+                        <%-- Fills the table with data. TODO --%>
+                        <% for (int i=0 ; i<data.size() ; i+=4){ %>
                         <tr>
                             <td> <%= data.get(i) %> </td>
                             <td> <%= data.get(i+1) %> </td>
                             <td> <%= data.get(i+2) %> </td>
                             <td> <%= data.get(i+3) %> </td>
-                            <td> <%= data.get(i+4) %> </td>
+                            <%--<td> <%= data.get(i+4) %> </td>--%>
                         </tr>
                         <% } %>
 
