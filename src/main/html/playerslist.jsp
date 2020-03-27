@@ -72,9 +72,9 @@
                             <form id="form<%=i%>" action="/playerslist" method="post">
                                 <input type="hidden" name="pseudo" value="<%=data.get(i).get(0)%>">
                             </form>
-                            <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(0) %> </td>
-                            <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(1) %> </td>
-                            <td onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(3) %> </td>
+                            <td id="clickable" onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(0) %> </td>
+                            <td id="clickable" onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(1) %> </td>
+                            <td id="clickable" onclick="document.getElementById('form<%=i%>').submit()"> <%= data.get(i).get(3) %> </td>
                             <td> <input type="checkbox" name="checkbox" value="<%=i%>"> </td>
                         </tr>
                     <% } %>
