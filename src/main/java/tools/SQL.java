@@ -390,7 +390,7 @@ public class SQL {
                 array.add(player);
             }
             ArrayList<ArrayList<String>> nbSessions = nbSessions();
-            for(int i = 0;i < array.size() - 1;i++){
+            for(int i = 0;i < array.size();i++){
                 boolean ok = false;
                 for(int j = 0;j < nbSessions.size();j++){
                     if(nbSessions.get(j).get(1).equals(array.get(i).get(0))){
