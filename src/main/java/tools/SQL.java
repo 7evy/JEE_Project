@@ -542,6 +542,12 @@ public class SQL {
             statement.setInt(1, idUser);
             statement.setInt(2, idGame);
             statement.executeUpdate();
+            request = "UPDATE Session SET endDate = ? WHERE idUser = ? AND idGame = ?;";
+            statement = con.prepareStatement(request);
+            statement.setString(1, SDate.now().toString());
+            statement.setInt(2, idUser);
+            statement.setInt(3, idGame);
+            statement.executeUpdate();
         } catch (Exception e) {
             e.getMessage();
             e.printStackTrace();
